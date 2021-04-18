@@ -1,1 +1,1 @@
-# project 1G and other adventures of MTS
+# operation 1G and other adventures of MTS
