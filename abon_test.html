@@ -5,8 +5,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 		<title>abon_test</title>
 		<style type="text/css">
-			body{height:100%;background-color:#f1f1f1;display:flex;flex-direction:column;box-sizing:border-box;}
-			body{font-family:arial;color:#000;font-size:8pt;line-height:8pt;}
+			body{
+				height:100%;
+				background-color:#f1f1f1;
+				display:flex;
+				flex-direction:column;
+				box-sizing:border-box;
+				margin:4px;
+				font-family:arial;
+				color:#000;
+				font-size:8pt;
+				line-height:8pt;
+			}
 			input{font-family:arial;font-size:8pt;}
 			input[type="checkbox"]{}
 			input[type="text"]#input_search{width:100%;text-align:left;padding:1px;height:14pt;font-size:14pt;border: 1px solid #aaa;background-color:#ffffff;}
@@ -142,7 +152,7 @@
 	<body>
 		<div class="tile tile-search">
 			<div style="width:100%;">
-				<input type="text" style="" id="input_search" value="demo">
+				<input type="text" style="" id="input_search" value="demo1">
 				<div id="loader_search" class="myloader-line hide"></div>
 			</div>
 			<input id="btn_search" type="button" value="П">
@@ -165,7 +175,7 @@
 			</div>
 			<hr>
 			<div style="text-align:right;">
-				<select onchange="console.log(event);console.log(event.target.value);selectMode(event);">
+				<select onchange="selectMode(event);">
 					<option disabled></option>
 					<option selected>оборудование</option>
 					<option>план-схема</option>
@@ -174,6 +184,7 @@
 			</div>
 			<script>
 				function selectMode(event){
+					console.log(event.target.value);
 					for(let container of document.getElementsByClassName('container')){
 						container.classList.add('hide');
 					};
@@ -182,29 +193,172 @@
 				};
 			</script>
 			<div class="content-x-scroll">
-				<div style="/*width:max-content;*/" class="container" name="оборудование">
-					<div class="floor-racks" id="9150039514513354494.cherdak.racks" style="justify-content:space-between;">
-						<div class="rack type-L" id="9156417529913313879" style="order:1;"><div class="rack-head"><div class="rack-title" id="9156417529913313879_title"><a href="https://nioss/ncobject.jsp?id=9156417529913313879" target="_blank"><span class="title-norm">L#1</span><span class="title-short">L#1</span></a></div></div><div class="rack-devices" id="L_КР_54_00187-1.devices_ne"><div class="device type-ETH" id="ETH_КР_54_00187_1"><div class="device-head"><div class="device-title" id="ETH_КР_54_00187_1_title"><a href="https://nioss/ncobject.jsp?id=9142109288913139824" target="_blank"><span class="title-norm">ETH#1&nbsp;..184.56</span><span class="title-short">ETH#1</span></a></div><div class="device-led online" id="ETH_КР_54_00187_1.led"></div></div></div><div class="device type-ETH" id="ETH_КР_54_00187_6"><div class="device-head"><div class="device-title" id="ETH_КР_54_00187_6_title"><a href="https://nioss/ncobject.jsp?id=9142557392213879426" target="_blank"><span class="title-norm">ETH#6&nbsp;..184.60</span><span class="title-short">ETH#6</span></a></div><div class="device-led online" id="ETH_КР_54_00187_6.led"></div></div></div><div class="device type-OP" id="OP_КР_54_00187_2"><div class="device-head"><div class="device-title" id="OP_КР_54_00187_2_title"><a href="https://nioss/ncobject.jsp?id=9142367578813810408" target="_blank"><span class="title-norm">OP#2&nbsp;..41.141</span><span class="title-short">OP#2</span></a></div><div class="device-led online" id="OP_КР_54_00187_2.led"></div></div></div></div><div class="rack-devices" id="9156417529913313879.devices_pp"><div class="device type-PP" id="PP_КР_54_00187_3"><div class="device-head"><div class="device-title" id="PP_КР_54_00187_3_title"><a href="https://nioss/ncobject.jsp?id=9156425270613605000" target="_blank"><span class="title-norm">PP#3</span><span class="title-short">PP#3</span></a></div></div></div><div class="device type-PP" id="PP_КР_54_00187_1"><div class="device-head"><div class="device-title" id="PP_КР_54_00187_1_title"><a href="https://nioss/ncobject.jsp?id=9156425262713603154" target="_blank"><span class="title-norm">PP#1</span><span class="title-short">PP#1</span></a></div></div></div></div></div>
-						<div class="rack type-L" id="9156417625213317380" style="order:3;"><div class="rack-head"><div class="rack-title" id="9156417625213317380_title"><a href="https://nioss/ncobject.jsp?id=9156417625213317380" target="_blank"><span class="title-norm">L#3</span><span class="title-short">L#3</span></a></div></div><div class="rack-devices" id="L_КР_54_00187-3.devices_ne"><div class="device type-ETH" id="ETH_КР_54_00187_2"><div class="device-head"><div class="device-title" id="ETH_КР_54_00187_2_title"><a href="https://nioss/ncobject.jsp?id=9142109309513141815" target="_blank"><span class="title-norm">ETH#2&nbsp;..184.57</span><span class="title-short">ETH#2</span></a></div><div class="device-led online" id="ETH_КР_54_00187_2.led"></div></div></div><div class="device type-ETH" id="ETH_КР_54_00187_4"><div class="device-head"><div class="device-title" id="ETH_КР_54_00187_4_title"><a href="https://nioss/ncobject.jsp?id=9142471512413247527" target="_blank"><span class="title-norm">ETH#4&nbsp;..184.78</span><span class="title-short">ETH#4</span></a></div><div class="device-led online" id="ETH_КР_54_00187_4.led"></div></div></div><div class="device type-OP" id="OP_КР_54_00187_1"><div class="device-head"><div class="device-title" id="OP_КР_54_00187_1_title"><a href="https://nioss/ncobject.jsp?id=9142367578813810407" target="_blank"><span class="title-norm">OP#1&nbsp;..41.142</span><span class="title-short">OP#1</span></a></div><div class="device-led online" id="OP_КР_54_00187_1.led"></div></div></div></div><div class="rack-devices" id="9156417625213317380.devices_pp"><div class="device type-PP" id="PP_КР_54_00187_5"><div class="device-head"><div class="device-title" id="PP_КР_54_00187_5_title"><a href="https://nioss/ncobject.jsp?id=9156425274313606328" target="_blank"><span class="title-norm">PP#5</span><span class="title-short">PP#5</span></a></div></div></div><div class="device type-PP" id="PP_КР_54_00187_2"><div class="device-head"><div class="device-title" id="PP_КР_54_00187_2_title"><a href="https://nioss/ncobject.jsp?id=9156425268013604280" target="_blank"><span class="title-norm">PP#2</span><span class="title-short">PP#2</span></a></div></div></div></div></div>
-						<div class="rack type-L" id="9156417619613316715" style="order:2;"><div class="rack-head"><div class="rack-title" id="9156417619613316715_title"><a href="https://nioss/ncobject.jsp?id=9156417619613316715" target="_blank"><span class="title-norm">L#2</span><span class="title-short">L#2</span></a></div></div><div class="rack-devices" id="L_КР_54_00187-2.devices_ne"><div class="device type-ETH" id="ETH_КР_54_00187_3"><div class="device-head"><div class="device-title" id="ETH_КР_54_00187_3_title"><a href="https://nioss/ncobject.jsp?id=9142109319613141941" target="_blank"><span class="title-norm">ETH#3&nbsp;..184.59</span><span class="title-short">ETH#3</span></a></div><div class="device-led online" id="ETH_КР_54_00187_3.led"></div></div></div><div class="device type-ETH" id="ETH_КР_54_00187_5"><div class="device-head"><div class="device-title" id="ETH_КР_54_00187_5_title"><a href="https://nioss/ncobject.jsp?id=9142471594313247889" target="_blank"><span class="title-norm">ETH#5&nbsp;..184.79</span><span class="title-short">ETH#5</span></a></div><div class="device-led online" id="ETH_КР_54_00187_5.led"></div></div></div></div><div class="rack-devices" id="9156417619613316715.devices_pp"><div class="device type-PP" id="PP_КР_54_00187_4"><div class="device-head"><div class="device-title" id="PP_КР_54_00187_4_title"><a href="https://nioss/ncobject.jsp?id=9156425278013606125" target="_blank"><span class="title-norm">PP#4</span><span class="title-short">PP#4</span></a></div></div></div><div class="device type-PP" id="PP_КР_54_00187_6"><div class="device-head"><div class="device-title" id="PP_КР_54_00187_6_title"><a href="https://nioss/ncobject.jsp?id=9156425280113612019" target="_blank"><span class="title-norm">PP#6</span><span class="title-short">PP#6</span></a></div></div></div></div></div>
+				<div style="/*width:max-content;*/" class="container o" name="оборудование">
+					<style type="text/css">
+						.o .rack-list{display:flex;flex-direction:row;flex-wrap:wrap;}
+						.o .rack-obj{width:30em;margin:1em;margin-top:0.5em;margin-bottom:0.5em;border:1px solid #000;border-radius:2px;background-color:#aaa;}
+						.o .rack-fake{width:30em;margin:1em;margin-top:0.5em;margin-bottom:0.5em;}
+						.o .rack-title{text-align:center;}
+						.o .rack-fake .rack-title{text-align:left;}
+						.o .device-list{display:flex;flex-direction:column;}
+						.o .device-obj{width:28em;margin:1em;margin-top:0.2em;margin-bottom:0.2em;border:1px solid #000;border-radius:1px;/*background-color:#fff;*/}
+						.o .device-title{text-align:left;}
+						.o .device-model{text-align:left;margin-top:0.2em;margin-bottom:0.2em;}
+					</style>
+					<div class="rack-list">
+						<div class="rack-obj" style="order:1;">
+							<div class="rack-title">шкаф#1_подъезд4.этаж17</div>
+							<div class="device-list">
+								<div class="device-obj type-ETH" style="order:1;">
+									<div class="device-title">коммутатор#1_..184.56</div>
+									<div class="device-model">D-LINK DES-3200-52</div>
+								</div>
+								<div class="device-obj type-ETH" style="order:2;">
+									<div class="device-title">коммутатор#2_..184.52</div>
+									<div class="device-model">D-LINK DES-3200-52</div>
+								</div>
+								<div class="device-obj type-OP" style="order:2;">
+									<div class="device-title">опт.приемник#2_..84.52</div>
+									<div class="device-model">RTM OR862-I</div>
+								</div>
+							</div>
+						</div>
+						<div class="rack-obj" style="order:2;">
+							<div class="rack-title">шкаф#2_подъезд4.подвал</div>
+							<div class="device-list">
+								<div class="device-obj type-ETH" style="order:3;">
+									<div class="device-title">коммутатор#3_..184.36</div>
+									<div class="device-model">D-LINK DES-3200-52</div>
+								</div>
+								<div class="device-obj type-ETH" style="order:5;">
+									<div class="device-title">коммутатор#5_..184.35</div>
+									<div class="device-model">D-LINK DES-3200-52</div>
+								</div>
+								<div class="device-obj type-OP" style="order:1;">
+									<div class="device-title">опт.приемник#1_..84.53</div>
+									<div class="device-model">RTM OR862-I</div>
+								</div>
+							</div>
+						</div>
+						<div class="rack-fake" style="order:9999;">
+							<div class="rack-title">оборудование вне шкафа:</div>
+							<div class="device-list">
+								<div class="device-obj type-ETH" style="order:7;">
+									<div class="device-title">коммутатор#7_..184.26</div>
+									<div class="device-model">D-LINK DES-3200-52</div>
+								</div>
+								<div class="device-obj type-ETH" style="order:8;">
+									<div class="device-title">коммутатор#8_..184.25</div>
+									<div class="device-model">D-LINK DES-3200-52</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="display:inline-flex;">
+						<input type="button" value="добавить устройство">
+						<input type="button" value="пинг всего">
+						<input type="button" value="опрос всего">
+					</div>
+				</div>
+				<div style="/*width:max-content;*/" class="container hide" name="оборудование1">
+					<div class="floor-racks" id="9150039514513354494.cherdak.racks" style="justify-content:unset;">
+						<div class="rack type-L" id="9156417529913313879" style="order:1;">
+							<div class="rack-head">
+								<div class="rack-title" id="9156417529913313879_title">шкаф1_п1.э17</div>
+							</div>
+							<div class="rack-devices" id="L_КР_54_00187-1.devices_ne">
+								<div class="device type-ETH" id="ETH_КР_54_00187_1">
+									<div class="device-head">
+										<div class="device-title" id="ETH_КР_54_00187_1_title">ETH#1&nbsp;..184.56</div>
+										<div class="device-led online" id="ETH_КР_54_00187_1.led"></div>
+									</div>
+								</div>
+								<div class="device type-ETH" id="ETH_КР_54_00187_6">
+									<div class="device-head">
+										<div class="device-title" id="ETH_КР_54_00187_6_title">ETH#6&nbsp;..184.60</div>
+										<div class="device-led online" id="ETH_КР_54_00187_6.led"></div>
+									</div>
+								</div>
+								<div class="device type-OP" id="OP_КР_54_00187_2">
+									<div class="device-head">
+										<div class="device-title" id="OP_КР_54_00187_2_title">OP#2&nbsp;..41.141</div>
+										<div class="device-led online" id="OP_КР_54_00187_2.led"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rack type-L" id="9156417529913313879" style="order:1;">
+							<div class="rack-head">
+								<div class="rack-title" id="9156417529913313879_title">шкаф1_п1.э17</div>
+							</div>
+							<div class="rack-devices" id="L_КР_54_00187-1.devices_ne">
+								<div class="device type-ETH" id="ETH_КР_54_00187_1">
+									<div class="device-head">
+										<div class="device-title" id="ETH_КР_54_00187_1_title">ETH#1&nbsp;..184.56</div>
+										<div class="device-led online" id="ETH_КР_54_00187_1.led"></div>
+									</div>
+								</div>
+								<div class="device type-ETH" id="ETH_КР_54_00187_6">
+									<div class="device-head">
+										<div class="device-title" id="ETH_КР_54_00187_6_title">ETH#6&nbsp;..184.60</div>
+										<div class="device-led online" id="ETH_КР_54_00187_6.led"></div>
+									</div>
+								</div>
+								<div class="device type-OP" id="OP_КР_54_00187_2">
+									<div class="device-head">
+										<div class="device-title" id="OP_КР_54_00187_2_title">OP#2&nbsp;..41.141</div>
+										<div class="device-led online" id="OP_КР_54_00187_2.led"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="rack type-L" id="9156417529913313879" style="order:1;">
+							<div class="rack-head">
+								<div class="rack-title" id="9156417529913313879_title">шкаф1_п1.э17</div>
+							</div>
+							<div class="rack-devices" id="L_КР_54_00187-1.devices_ne">
+								<div class="device type-ETH" id="ETH_КР_54_00187_1">
+									<div class="device-head">
+										<div class="device-title" id="ETH_КР_54_00187_1_title">ETH#1&nbsp;..184.56</div>
+										<div class="device-led online" id="ETH_КР_54_00187_1.led"></div>
+									</div>
+								</div>
+								<div class="device type-ETH" id="ETH_КР_54_00187_6">
+									<div class="device-head">
+										<div class="device-title" id="ETH_КР_54_00187_6_title">ETH#6&nbsp;..184.60</div>
+										<div class="device-led online" id="ETH_КР_54_00187_6.led"></div>
+									</div>
+								</div>
+								<div class="device type-OP" id="OP_КР_54_00187_2">
+									<div class="device-head">
+										<div class="device-title" id="OP_КР_54_00187_2_title">OP#2&nbsp;..41.141</div>
+										<div class="device-led online" id="OP_КР_54_00187_2.led"></div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="rack-devices" id="L_КР_54_00187-1.devices_ne" style="order:9999;">
-							<!--<div class="rack-devices-title">Оборудование вне шкафа:</div>-->
-							<div class="device type-ETH" id="ETH_КР_54_00187_1">
-								<div class="device-head">
-									<div class="device-title" id="ETH_КР_54_00187_1_title">ETH#1&nbsp;..184.56</div>
-									<div class="device-led online" id="ETH_КР_54_00187_1.led"></div>
-								</div>
+							<div class="rack-head">
+								<div class="rack-title" id="9156417529913313879_title">оборудование вне шкафа:</div>
 							</div>
-							<div class="device type-ETH" id="ETH_КР_54_00187_2">
-								<div class="device-head">
-									<div class="device-title" id="ETH_КР_54_00187_2_title">ETH#2&nbsp;..184.57</div>
-									<div class="device-led online" id="ETH_КР_54_00187_2.led"></div>
+							<div class="rack-devices" id="L_КР_54_00187-1.devices_ne">
+								<div class="device type-ETH" id="ETH_КР_54_00187_1">
+									<div class="device-head">
+										<div class="device-title" id="ETH_КР_54_00187_1_title">ETH#1&nbsp;..184.56</div>
+										<div class="device-led online" id="ETH_КР_54_00187_1.led"></div>
+									</div>
 								</div>
-							</div>
-							<div class="device type-OP" id="OP_КР_54_00187_2">
-								<div class="device-head">
-									<div class="device-title" id="OP_КР_54_00187_2_title">OP#2&nbsp;..184.58</div>
-									<div class="device-led online" id="ETH_КР_54_00187_2.led"></div>
+								<div class="device type-ETH" id="ETH_КР_54_00187_6">
+									<div class="device-head">
+										<div class="device-title" id="ETH_КР_54_00187_6_title">ETH#6&nbsp;..184.60</div>
+										<div class="device-led online" id="ETH_КР_54_00187_6.led"></div>
+									</div>
+								</div>
+								<div class="device type-OP" id="OP_КР_54_00187_2">
+									<div class="device-head">
+										<div class="device-title" id="OP_КР_54_00187_2_title">OP#2&nbsp;..41.141</div>
+										<div class="device-led online" id="OP_КР_54_00187_2.led"></div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -221,17 +375,14 @@
 								<th>пд</th>
 								<th>эт</th>
 								<th>кв</th>
-								<th>switch</th>
-								<th>port</th>
-								<th>switch</th>
-								<th>port</th>
-								<th>description</th>
+								<th>коммутатор</th>
+								<th>порт</th>
 								<th><input type="checkbox"></th>
+								<th>тест</th>
+								<th>примечание</th>
 								<th></th>
 							</tr>
 							<tr>
-								<th></th>
-								<th></th>
 								<th></th>
 								<th></th>
 								<th></th>
@@ -245,8 +396,9 @@
 									</select>
 								</th>
 								<th></th>
-								<th></th>
 								<th><input type="checkbox"></th>
+								<th><input type="button" value="все"></th>
+								<th></th>
 								<th></th>
 							</tr>
 						</thead>
@@ -256,12 +408,11 @@
 								<td>10</td>
 								<td>8</td>
 								<td>289</td>
-								<td>10.221.255.220</td>
-								<td>21</td>
-								<td class="cell-input input-ip"><input type="text" value="10.221.180.168"></td>
-								<td class="cell-input input-port"><input type="text" value="45"></td>
-								<td class="cell-input "><input type="text" value=""></td>
+								<td class="cell-input input-ip"><input type="text" value="10.221.180.168" placeholder="10.221.134.202"></td>
+								<td class="cell-input input-port"><input type="text" value="45" placeholder="13"></td>
 								<td><input type="checkbox"></td>
+								<td><input type="button" value="тест"></td>
+								<td class="cell-input "><input type="text" value=""></td>
 								<td></td>
 							</tr>
 							<tr>
@@ -269,12 +420,11 @@
 								<td>9</td>
 								<td>7</td>
 								<td>213</td>
-								<td>10.221.255.220</td>
-								<td>9</td>
-								<td class="cell-input input-ip"><input type="text" value="10.221.180.168"></td>
-								<td class="cell-input input-port"><input type="text" value="40"></td>
-								<td class="cell-input "><input type="text" value=""></td>
+								<td class="cell-input input-ip"><input type="text" value="" placeholder="10.221.134.202"></td>
+								<td class="cell-input input-port"><input type="text" value="" placeholder="9"></td>
 								<td><input type="checkbox"></td>
+								<td><input type="button" value="тест"></td>
+								<td class="cell-input "><input type="text" value=""></td>
 								<td></td>
 							</tr>
 						</tbody>
@@ -296,13 +446,6 @@
 				<span>Россия, обл. Новосибирская, г. Новосибирск, ул. Сибирская, д. 26</span>
 			</div>
 			<hr>
-			<div style="text-align:right;">
-				<select disabled>
-					<option disabled>оборудование</option>
-					<option disabled>план-схема</option>
-					<option disabled>абоненты</option>
-				</select>
-			</div>
 			<div>
 				<div style="text-align:center;">объект заблокирован пользователем {{username}}</div>
 			</div>
