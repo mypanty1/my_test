@@ -103,17 +103,17 @@
 						.devices-without{/*display:flex;*//*flex-direction:column;*/}
 						
 						table{border-collapse:collapse;width:fit-content;}
-						tr th{border:1px solid #000;background-color:#ffe4b5;height:12px;text-align:center;}
-						tr td{border:1px solid #000;background-color:#e0e0e0;height:12px;text-align:right;}
-						
+						tr th{border:1px solid #000;background-color:#ffe4b5;height:12px;text-align:center;font-weight:unset;}
+						tr td{border:1px solid #000;background-color:#e0e0e0;height:12px;}
+						th.cell-desc{min-width:127px;}
 						th.cell-input input[type="text"],td.cell-input input[type="text"]{width:100px;padding:0px;}
 						th.cell-input input[type="text"].edt,td.cell-input input[type="text"].edt{background-color:#ffffe0;}
-						th.cell-input input[type="text"]:hover,td.cell-input input[type="text"]:hover{background-color:#eeeeff;}
-						th.cell-input input[type="text"]:focus,td.cell-input input[type="text"]:focus{outline:unset;background-color:#eeffff;}
+						th.cell-input input[type="text"]:hover:not(:disabled),td.cell-input input[type="text"]:hover:not(:disabled){background-color:#eeeeff;}
+						th.input-ip,td.input-ip{text-align:right;}
 						th.input-ip input[type="text"],td.input-ip input[type="text"]{width:75px;text-align:left;}
 						th.input-port input[type="text"],td.input-port input[type="text"]{width:25px;text-align:right;}
 						
-						th input[type="button"],td input[type="button"]{height:12px;padding:0px;font-size:7pt;}
+						th input[type="button"],td input[type="button"]{padding:0px;font-family:monospace;}
 						th select,td select{font-size:8pt;}
 						th input[type="checkbox"],td input[type="checkbox"]{margin:0px;}
 						
@@ -372,19 +372,30 @@
 						<thead>
 							<tr>
 								<th></th>
-								<th>пд</th>
-								<th>эт</th>
 								<th>кв</th>
 								<th>коммутатор</th>
 								<th>порт</th>
-								<th><input type="checkbox"></th>
 								<th>тест</th>
-								<th>примечание</th>
+								<th class="cell-desc">примечание</th>
+								<th><input type="button" id="btn_toggleAll" value="▓▓"></th>
+								<script>
+									document.getElementById('btn_toggleAll').addEventListener('click',function(event){
+										if(event.target.value=='░░'){
+											while(document.querySelectorAll('.btn_checkbox[value="▓▓"]').length>0){
+												document.querySelectorAll('.btn_checkbox[value="▓▓"]')[0].value='░░';
+											};
+											event.target.value='▓▓';
+										}else{
+											while(document.querySelectorAll('.btn_checkbox[value="░░"]').length>0){
+												document.querySelectorAll('.btn_checkbox[value="░░"]')[0].value='▓▓';
+											};
+											event.target.value='░░';
+										};
+									});
+								</script>
 								<th></th>
 							</tr>
 							<tr>
-								<th></th>
-								<th></th>
 								<th></th>
 								<th></th>
 								<th>
@@ -395,36 +406,87 @@
 										<option>10.221.155.13</option>
 									</select>
 								</th>
+								<th><input type="button" value="n++▼"></th>
+								<th><input type="button" value="_▼_"></th>
 								<th></th>
-								<th><input type="checkbox"></th>
-								<th><input type="button" value="все"></th>
-								<th></th>
+								<th><input type="button" id="btn_invertAll" value="▀▄"></th>
+								<script>
+									document.getElementById('btn_invertAll').addEventListener('click',function(event){
+										for(let btn of document.querySelectorAll('.btn_checkbox')){
+											if(btn.value=='▓▓'){
+												btn.value='░░';
+											}else{
+												btn.value='▓▓';
+											};
+										};
+										if(event.target.value=='▀▄'){
+											event.target.value='▄▀';
+										}else{
+											event.target.value='▀▄';
+										};
+									});
+								</script>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td></td>
-								<td>10</td>
-								<td>8</td>
-								<td>289</td>
+								<td>270</td>
 								<td class="cell-input input-ip"><input type="text" value="10.221.180.168" placeholder="10.221.134.202"></td>
-								<td class="cell-input input-port"><input type="text" value="45" placeholder="13"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="button" value="тест"></td>
-								<td class="cell-input "><input type="text" value=""></td>
+								<td class="cell-input input-port"><input type="text" value="40" placeholder="19"></td>
+								<td><input type="button" style="color:green;" value=" ██"></td>
+								<td>работает</td>
+								<td><input type="button" class="btn_checkbox" value="░░" onclick="if(this.value=='▓▓'){this.value='░░'}else{this.value='▓▓'}"></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td>9</td>
-								<td>7</td>
-								<td>213</td>
+								<td>289</td>
+								<td class="cell-input input-ip"><input type="text" value="10.221.180.168" placeholder="10.221.134.202"></td>
+								<td class="cell-input input-port"><input type="text" value="43" placeholder="10"></td>
+								<td><input type="button" style="color:darkorange;" value=" ▓▓"></td>
+								<td>не верный порт</td>
+								<td><input type="button" class="btn_checkbox" value="░░" onclick="if(this.value=='▓▓'){this.value='░░'}else{this.value='▓▓'}"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>144</td>
+								<td class="cell-input input-ip"><input type="text" value="10.221.180.168" placeholder="10.221.134.202"></td>
+								<td class="cell-input input-port"><input type="text" value="45" placeholder="13"></td>
+								<td><input type="button" style="color:cornflowerblue;" id="btn_anim" value=" ► "></td>
+								<script>
+									document.getElementById('btn_anim').addEventListener('click',function(event){
+										event.target.setAttribute('disabled','disabled');
+										let timer=setTimeout(anim,100);
+										function anim(){
+											switch(event.target.value){
+												case' ► ':event.target.value=' ▀ ';timer=setTimeout(anim,100);break;
+												case' ▀▀':event.target.value='  ▀';timer=setTimeout(anim,100);break;
+												case'  ▀':event.target.value='  █';timer=setTimeout(anim,100);break;
+												case'  █':event.target.value='  ▄';timer=setTimeout(anim,100);break;
+												case'  ▄':event.target.value=' ▄▄';timer=setTimeout(anim,100);break;
+												case' ▄▄':event.target.value=' ▄ ';timer=setTimeout(anim,100);break;
+												case' ▄ ':event.target.value=' █ ';timer=setTimeout(anim,100);break;
+												case' █ ':event.target.value=' ▀ ';timer=setTimeout(anim,100);break;
+												case' ▀ ':event.target.value=' ▀▀';timer=setTimeout(anim,100);break;
+											};
+										};
+									});
+								</script>
+								<td>проверка...</td>
+								<td><input type="button" class="btn_checkbox" value="░░" onclick="if(this.value=='▓▓'){this.value='░░'}else{this.value='▓▓'}"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>1224</td>
 								<td class="cell-input input-ip"><input type="text" value="" placeholder="10.221.134.202"></td>
 								<td class="cell-input input-port"><input type="text" value="" placeholder="9"></td>
-								<td><input type="checkbox"></td>
-								<td><input type="button" value="тест"></td>
-								<td class="cell-input "><input type="text" value=""></td>
+								<td><input type="button" style="color:red;" value=" ██"></td>
+								<td>не авторизован</td>
+								<td><input type="button" class="btn_checkbox" value="░░" onclick="if(this.value=='▓▓'){this.value='░░'}else{this.value='▓▓'}"></td>
 								<td></td>
 							</tr>
 						</tbody>
