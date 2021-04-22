@@ -196,30 +196,69 @@
 				<div style="/*width:max-content;*/" class="container o" name="оборудование">
 					<style type="text/css">
 						.o .rack-list{display:flex;flex-direction:row;flex-wrap:wrap;}
-						.o .rack-obj{width:30em;margin:1em;margin-top:0.5em;margin-bottom:0.5em;border:1px solid #000;border-radius:2px;background-color:#aaa;}
-						.o .rack-fake{width:30em;margin:1em;margin-top:0.5em;margin-bottom:0.5em;}
+						.o .rack-obj{width:30em;height:fit-content;margin:1em;margin-top:0.5em;margin-bottom:0.5em;border:1px solid #000;border-radius:2px;background-color:#aaa;}
+						.o .rack-fake{width:30em;height:fit-content;margin:1em;margin-top:0.5em;margin-bottom:0.5em;}
 						.o .rack-title{text-align:center;}
 						.o .rack-fake .rack-title{text-align:left;}
 						.o .device-list{display:flex;flex-direction:column;}
 						.o .device-obj{width:28em;margin:1em;margin-top:0.2em;margin-bottom:0.2em;border:1px solid #000;border-radius:1px;/*background-color:#fff;*/}
+						.o .device-head{display:inline-flex;justify-content:space-between;width:100%;}
 						.o .device-title{text-align:left;}
-						.o .device-model{text-align:left;margin-top:0.2em;margin-bottom:0.2em;}
+						.o .device-ping{text-align:right;}
+						.o .ping-result{margin-right:1em;}
+						.o input[type="button"]{padding:0px;font-family:monospace;}
+						.o .device-footer{display:inline-flex;justify-content:space-between;width:100%;}
+						.o .device-model{text-align:left;margin-top:0.2em;}
+						.o .device-discovery{text-align:right;}
+						.o .discovery-result{margin-right:1em;}
+						.o .add-device{display:inline-flex;}
+						.o .add-device input[type="text"]{width:25px;text-align:right;}
 					</style>
 					<div class="rack-list">
 						<div class="rack-obj" style="order:1;">
 							<div class="rack-title">шкаф#1_подъезд4.этаж17</div>
 							<div class="device-list">
 								<div class="device-obj type-ETH" style="order:1;">
-									<div class="device-title">коммутатор#1_..184.56</div>
-									<div class="device-model">D-LINK DES-3200-52</div>
+									<div class="device-head">
+										<div class="device-title">коммутатор#1_..184.56</div>
+										<div class="device-ping">
+											<span class="ping-result">2.43ms</span><input type="button" style="color:green;" value="██">
+										</div>
+									</div>
+									<div class="device-footer">
+										<div class="device-model">D-LINK DES-3200-52</div>
+										<div class="device-discovery">
+											<span class="discovery-result">20.04.2021 10:19:29</span><input type="button" style="color:green;" value="██">
+										</div>
+									</div>
 								</div>
 								<div class="device-obj type-ETH" style="order:2;">
-									<div class="device-title">коммутатор#2_..184.52</div>
-									<div class="device-model">D-LINK DES-3200-52</div>
+									<div class="device-head">
+										<div class="device-title">коммутатор#2_..184.52</div>
+										<div class="device-ping">
+											<span class="ping-result">2.12ms</span><input type="button" style="color:green;" value="██">
+										</div>
+									</div>
+									<div class="device-footer">
+										<div class="device-model">FIBERHOME S4820-52T-X</div>
+										<div class="device-discovery">
+											<span class="discovery-result">20.04.2021 10:20:01</span><input type="button" style="color:green;" value="██">
+										</div>
+									</div>
 								</div>
 								<div class="device-obj type-OP" style="order:2;">
-									<div class="device-title">опт.приемник#2_..84.52</div>
-									<div class="device-model">RTM OR862-I</div>
+									<div class="device-head">
+										<div class="device-title">опт.приемник#2_..84.52</div>
+										<div class="device-ping">
+											<span class="ping-result">2.24ms</span><input type="button" style="color:green;" value="██">
+										</div>
+									</div>
+									<div class="device-footer">
+										<div class="device-model">RTM OR862-I</div>
+										<div class="device-discovery">
+											<span class="discovery-result">20.04.2021 10:01:29</span><input type="button" style="color:green;" value="██">
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -227,140 +266,135 @@
 							<div class="rack-title">шкаф#2_подъезд4.подвал</div>
 							<div class="device-list">
 								<div class="device-obj type-ETH" style="order:3;">
-									<div class="device-title">коммутатор#3_..184.36</div>
-									<div class="device-model">D-LINK DES-3200-52</div>
+									<div class="device-head">
+										<div class="device-title">коммутатор#3_..184.36</div>
+										<div class="device-ping">	
+											<span class="ping-result">1.11ms</span><input type="button" style="color:green;" value="██">
+										</div>
+									</div>
+									<div class="device-footer">
+										<div class="device-model">D-LINK DES-3200-52</div>
+										<div class="device-discovery">
+											<span class="discovery-result">20.04.2021 10:09:29</span><input type="button" style="color:red;" value="██">
+										</div>
+									</div>
 								</div>
 								<div class="device-obj type-ETH" style="order:5;">
-									<div class="device-title">коммутатор#5_..184.35</div>
-									<div class="device-model">D-LINK DES-3200-52</div>
+									<div class="device-head">
+										<div class="device-title">коммутатор#5_..184.35</div>
+										<div class="device-ping">
+											<span class="ping-result">1.33ms</span><input type="button" style="color:green;" value="██">
+										</div>
+									</div>
+									<div class="device-footer">
+										<div class="device-model">D-LINK DES-3200-52</div>
+										<div class="device-discovery">
+											<span class="discovery-result">20.04.2021 10:10:29</span><input type="button" style="color:red;" value="██">
+										</div>
+									</div>
 								</div>
 								<div class="device-obj type-OP" style="order:1;">
-									<div class="device-title">опт.приемник#1_..84.53</div>
-									<div class="device-model">RTM OR862-I</div>
+									<div class="device-head">
+										<div class="device-title">опт.приемник#1_..84.53</div>
+										<div class="device-ping">
+											<span class="ping-result"></span><input type="button" style="color:red;" value="██">
+										</div>
+									</div>
+									<div class="device-footer">
+										<div class="device-model">RTM OR862-I</div>
+										<div class="device-discovery">
+											<span class="discovery-result">20.04.2021 10:00:00</span><input type="button" style="color:darkorange;" value="██">
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="rack-fake" style="order:9999;">
+						<div class="rack-fake" style="order:9998;">
 							<div class="rack-title">оборудование вне шкафа:</div>
 							<div class="device-list">
 								<div class="device-obj type-ETH" style="order:7;">
-									<div class="device-title">коммутатор#7_..184.26</div>
-									<div class="device-model">D-LINK DES-3200-52</div>
+									<div class="device-head">
+										<div class="device-title">коммутатор#7_..184.26</div>
+										<div class="device-ping">
+											<span class="ping-result">3.22ms</span><input type="button" style="color:green;" value="██">
+										</div>
+									</div>
+									<div class="device-footer">
+										<div class="device-model">FIBERHOME S4820-28T-X</div>
+										<div class="device-discovery">
+											<span class="discovery-result">20.04.2021 10:09:09</span><input type="button" style="color:green;" value="██">
+										</div>
+									</div>
 								</div>
 								<div class="device-obj type-ETH" style="order:8;">
-									<div class="device-title">коммутатор#8_..184.25</div>
-									<div class="device-model">D-LINK DES-3200-52</div>
+									<div class="device-head">
+										<div class="device-title">коммутатор#8_..184.25</div>
+										<div class="device-ping">
+											<span class="ping-result"></span><input type="button" style="color:red;" value="██">
+										</div>
+									</div>
+									<div class="device-footer">
+										<div class="device-model">D-LINK DES-3200-52</div>
+										<div class="device-discovery">
+											<span class="discovery-result">20.04.2021 10:10:20</span><input type="button" style="color:red;" value="██">
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
+						<div class="rack-fake" id="generic_rack" style="order:9999;"></div>
 					</div>
-					<div style="display:inline-flex;">
-						<input type="button" value="добавить устройство">
-						<input type="button" value="пинг всего">
-						<input type="button" value="опрос всего">
-					</div>
-				</div>
-				<div style="/*width:max-content;*/" class="container hide" name="оборудование1">
-					<div class="floor-racks" id="9150039514513354494.cherdak.racks" style="justify-content:unset;">
-						<div class="rack type-L" id="9156417529913313879" style="order:1;">
-							<div class="rack-head">
-								<div class="rack-title" id="9156417529913313879_title">шкаф1_п1.э17</div>
-							</div>
-							<div class="rack-devices" id="L_КР_54_00187-1.devices_ne">
-								<div class="device type-ETH" id="ETH_КР_54_00187_1">
-									<div class="device-head">
-										<div class="device-title" id="ETH_КР_54_00187_1_title">ETH#1&nbsp;..184.56</div>
-										<div class="device-led online" id="ETH_КР_54_00187_1.led"></div>
-									</div>
-								</div>
-								<div class="device type-ETH" id="ETH_КР_54_00187_6">
-									<div class="device-head">
-										<div class="device-title" id="ETH_КР_54_00187_6_title">ETH#6&nbsp;..184.60</div>
-										<div class="device-led online" id="ETH_КР_54_00187_6.led"></div>
-									</div>
-								</div>
-								<div class="device type-OP" id="OP_КР_54_00187_2">
-									<div class="device-head">
-										<div class="device-title" id="OP_КР_54_00187_2_title">OP#2&nbsp;..41.141</div>
-										<div class="device-led online" id="OP_КР_54_00187_2.led"></div>
-									</div>
-								</div>
-							</div>
+					<div class="rack-fake">
+						<div class="device-ping">
+							<span class="ping-result">пинг всего:</span><input type="button" style="color:cornflowerblue;" value="██">
 						</div>
-						<div class="rack type-L" id="9156417529913313879" style="order:1;">
-							<div class="rack-head">
-								<div class="rack-title" id="9156417529913313879_title">шкаф1_п1.э17</div>
-							</div>
-							<div class="rack-devices" id="L_КР_54_00187-1.devices_ne">
-								<div class="device type-ETH" id="ETH_КР_54_00187_1">
-									<div class="device-head">
-										<div class="device-title" id="ETH_КР_54_00187_1_title">ETH#1&nbsp;..184.56</div>
-										<div class="device-led online" id="ETH_КР_54_00187_1.led"></div>
-									</div>
-								</div>
-								<div class="device type-ETH" id="ETH_КР_54_00187_6">
-									<div class="device-head">
-										<div class="device-title" id="ETH_КР_54_00187_6_title">ETH#6&nbsp;..184.60</div>
-										<div class="device-led online" id="ETH_КР_54_00187_6.led"></div>
-									</div>
-								</div>
-								<div class="device type-OP" id="OP_КР_54_00187_2">
-									<div class="device-head">
-										<div class="device-title" id="OP_КР_54_00187_2_title">OP#2&nbsp;..41.141</div>
-										<div class="device-led online" id="OP_КР_54_00187_2.led"></div>
-									</div>
-								</div>
-							</div>
+						<div class="device-discovery"><!--"STATUS":"SUCCESSFULLY","DSCV_DATE":"2021-04-17T10:19:29.000+03:00","ERROR_TYPE":null,"ERROR_TEXT":null-->
+							<span class="discovery-result">опрос всего:</span><input type="button" style="color:cornflowerblue;" value="██">
 						</div>
-						<div class="rack type-L" id="9156417529913313879" style="order:1;">
-							<div class="rack-head">
-								<div class="rack-title" id="9156417529913313879_title">шкаф1_п1.э17</div>
-							</div>
-							<div class="rack-devices" id="L_КР_54_00187-1.devices_ne">
-								<div class="device type-ETH" id="ETH_КР_54_00187_1">
-									<div class="device-head">
-										<div class="device-title" id="ETH_КР_54_00187_1_title">ETH#1&nbsp;..184.56</div>
-										<div class="device-led online" id="ETH_КР_54_00187_1.led"></div>
-									</div>
-								</div>
-								<div class="device type-ETH" id="ETH_КР_54_00187_6">
-									<div class="device-head">
-										<div class="device-title" id="ETH_КР_54_00187_6_title">ETH#6&nbsp;..184.60</div>
-										<div class="device-led online" id="ETH_КР_54_00187_6.led"></div>
-									</div>
-								</div>
-								<div class="device type-OP" id="OP_КР_54_00187_2">
-									<div class="device-head">
-										<div class="device-title" id="OP_КР_54_00187_2_title">OP#2&nbsp;..41.141</div>
-										<div class="device-led online" id="OP_КР_54_00187_2.led"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="rack-devices" id="L_КР_54_00187-1.devices_ne" style="order:9999;">
-							<div class="rack-head">
-								<div class="rack-title" id="9156417529913313879_title">оборудование вне шкафа:</div>
-							</div>
-							<div class="rack-devices" id="L_КР_54_00187-1.devices_ne">
-								<div class="device type-ETH" id="ETH_КР_54_00187_1">
-									<div class="device-head">
-										<div class="device-title" id="ETH_КР_54_00187_1_title">ETH#1&nbsp;..184.56</div>
-										<div class="device-led online" id="ETH_КР_54_00187_1.led"></div>
-									</div>
-								</div>
-								<div class="device type-ETH" id="ETH_КР_54_00187_6">
-									<div class="device-head">
-										<div class="device-title" id="ETH_КР_54_00187_6_title">ETH#6&nbsp;..184.60</div>
-										<div class="device-led online" id="ETH_КР_54_00187_6.led"></div>
-									</div>
-								</div>
-								<div class="device type-OP" id="OP_КР_54_00187_2">
-									<div class="device-head">
-										<div class="device-title" id="OP_КР_54_00187_2_title">OP#2&nbsp;..41.141</div>
-										<div class="device-led online" id="OP_КР_54_00187_2.led"></div>
-									</div>
-								</div>
-							</div>
+						<div class="add-device">
+							<input type="text" id="newIP_1" placeholder="10" value="10" disabled>
+							<span>.</span>
+							<input type="text" id="newIP_2" placeholder="2xx" value="">
+							<span>.</span>
+							<input type="text" id="newIP_3" placeholder="xxx" value="">
+							<span>.</span>
+							<input type="text" id="newIP_4" placeholder="xxx" value="">
+							<span style="width:1em;"></span>
+							<input type="button" id="add_generic" value="добавить">
+							<script>
+								document.getElementById('newIP_2').addEventListener('keydown',function(e){if(e.keyCode===13){document.getElementById('add_generic').click()}});
+								document.getElementById('newIP_3').addEventListener('keydown',function(e){if(e.keyCode===13){document.getElementById('add_generic').click()}});
+								document.getElementById('newIP_4').addEventListener('keydown',function(e){if(e.keyCode===13){document.getElementById('add_generic').click()}});
+								document.getElementById('add_generic').addEventListener('click',function(event){
+									if(!document.getElementById('newIP_1').value){return};
+									if(!document.getElementById('newIP_2').value){return};
+									if(!document.getElementById('newIP_3').value){return};
+									if(!document.getElementById('newIP_4').value){return};
+									if(!document.getElementById('generic_list')){
+										document.getElementById('generic_rack').insertAdjacentHTML('afterBegin',`	
+											<div class="rack-title">дополнительное оборудование:</div>
+											<div class="device-list" id="generic_list"></div>`);
+									};
+									let count=++document.getElementById('generic_list').children.length;
+									let ip=document.getElementById('newIP_1').value+`.`+document.getElementById('newIP_2').value+`.`+document.getElementById('newIP_3').value+`.`+document.getElementById('newIP_4').value;
+									if(document.getElementById(ip)){return};
+									document.getElementById('generic_list').insertAdjacentHTML('beforeEnd',`	
+										<div class="device-obj type-CPE" id="`+ip+`" style="order:`+count+`;">
+											<div class="device-head">
+												<div class="device-title">add.device#`+count+`_`+ip+`</div>
+												<div class="device-ping">
+													<span class="ping-result">3.11ms</span><input type="button" style="color:green;" value="██">
+												</div>
+											</div>
+											<div class="device-footer">
+												<div class="device-model"></div>
+												<div class="device-discovery">
+													<span class="discovery-result" style="color:gray;">объект не существует</span><input type="button" style="color:gray;" value="██" disabled>
+												</div>
+											</div>
+										</div>`);
+								});
+							</script>
 						</div>
 					</div>
 				</div>
@@ -407,7 +441,7 @@
 									</select>
 								</th>
 								<th><input type="button" value="n++▼"></th>
-								<th><input type="button" value="_▼_"></th>
+								<th><input type="button" value="[►]"></th>
 								<th></th>
 								<th><input type="button" id="btn_invertAll" value="▀▄"></th>
 								<script>
