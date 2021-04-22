@@ -12,6 +12,7 @@
 				flex-direction:column;
 				box-sizing:border-box;
 				margin:4px;
+				margin-top:0px;
 				font-family:arial;
 				color:#000;
 				font-size:8pt;
@@ -28,7 +29,7 @@
 				.tile-search{display:inline-flex;background-color:#fff;order:-1;}
 					.loader-line{width:100%;padding-left:1em;background-color:#35a6dc;background-image:linear-gradient(45deg,rgba(255,255,255,0.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.15) 50%,rgba(255,255,255,0.15) 75%,transparent 75%,transparent);background-size:1rem 1rem;animation:progress-bar-stripes 1s linear infinite;}
 					@keyframes progress-bar-stripes{from{background-position:1rem 0}to{background-position:0 0}}
-				.tile-result{border-top-left-radius:8px;}
+				.tile-result{margin-top:4px;}
 				.tile-result>*{width:100%;}
 				.tile-warning{background-color:#fee;}
 				.tile-unknown{background-color:#fed;}
@@ -105,6 +106,7 @@
 						table{border-collapse:collapse;width:fit-content;}
 						tr th{border:1px solid #000;background-color:#ffe4b5;height:12px;text-align:center;font-weight:unset;}
 						tr td{border:1px solid #000;background-color:#e0e0e0;height:12px;}
+						td.cell-flat{text-align:right;}
 						th.cell-desc{min-width:127px;}
 						th.cell-input input[type="text"],td.cell-input input[type="text"]{width:100px;padding:0px;}
 						th.cell-input input[type="text"].edt,td.cell-input input[type="text"].edt{background-color:#ffffe0;}
@@ -150,12 +152,31 @@
 		</style>
 	</head>
 	<body>
+		<script>
+			function animIcon(event){
+				event.target.setAttribute('disabled','disabled');
+				let timer=setTimeout(anim,100);
+				function anim(){
+					switch(event.target.value){
+						case' ▀ ':event.target.value=' ▀▀';timer=setTimeout(anim,100);break;
+						case' ▀▀':event.target.value='  ▀';timer=setTimeout(anim,100);break;
+						case'  ▀':event.target.value='  █';timer=setTimeout(anim,100);break;
+						case'  █':event.target.value='  ▄';timer=setTimeout(anim,100);break;
+						case'  ▄':event.target.value=' ▄▄';timer=setTimeout(anim,100);break;
+						case' ▄▄':event.target.value=' ▄ ';timer=setTimeout(anim,100);break;
+						case' ▄ ':event.target.value=' █ ';timer=setTimeout(anim,100);break;
+						case' █ ':event.target.value=' ▀ ';timer=setTimeout(anim,100);break;
+						default:event.target.value=' ▀ ';timer=setTimeout(anim,100);break;
+					};
+				};
+			};
+		</script>
 		<div class="tile tile-search">
 			<div style="width:100%;">
 				<input type="text" style="" id="input_search" value="demo1">
 				<div id="loader_search" class="myloader-line hide"></div>
 			</div>
-			<input id="btn_search" type="button" value="П">
+			<input id="btn_search" type="button" value="найти">
 		</div>
 		<script>
 			document.getElementById('input_search').addEventListener('keydown',function(e){if(e.keyCode===13){document.getElementById('btn_search').click()}});
@@ -165,7 +186,10 @@
 					tile.classList.add('hide');
 				};
 				let demotile=document.getElementsByClassName(document.getElementById('input_search').value);
-				if(demotile.length>0){demotile[0].classList.remove('hide');};
+				if(demotile.length>0){
+					demotile[0].classList.remove('hide');
+					document.getElementsByClassName('tile-search')[0].classList.toggle('hide');
+				};
 				document.getElementById('loader_search').classList.toggle('hide');
 			});
 		</script>
@@ -203,16 +227,16 @@
 						.o .device-list{display:flex;flex-direction:column;}
 						.o .device-obj{width:28em;margin:1em;margin-top:0.2em;margin-bottom:0.2em;border:1px solid #000;border-radius:1px;/*background-color:#fff;*/}
 						.o .device-head{display:inline-flex;justify-content:space-between;width:100%;}
-						.o .device-title{text-align:left;}
+						.o .device-title{margin-left:0.5em;padding-top:0.2em;text-align:left;}
 						.o .device-ping{text-align:right;}
 						.o .ping-result{margin-right:1em;}
 						.o input[type="button"]{padding:0px;font-family:monospace;}
 						.o .device-footer{display:inline-flex;justify-content:space-between;width:100%;}
-						.o .device-model{text-align:left;margin-top:0.2em;}
+						.o .device-model{margin-left:0.5em;text-align:left;margin-top:0.2em;}
 						.o .device-discovery{text-align:right;}
 						.o .discovery-result{margin-right:1em;}
 						.o .add-device{display:inline-flex;}
-						.o .add-device input[type="text"]{width:25px;text-align:right;}
+						.o .add-device input[type="text"]{width:75px;}
 					</style>
 					<div class="rack-list">
 						<div class="rack-obj" style="order:1;">
@@ -220,7 +244,7 @@
 							<div class="device-list">
 								<div class="device-obj type-ETH" style="order:1;">
 									<div class="device-head">
-										<div class="device-title">коммутатор#1_..184.56</div>
+										<div class="device-title">EthernetSwitch#1_10.221.<b>184.56</b></div>
 										<div class="device-ping">
 											<span class="ping-result">2.43ms</span><input type="button" style="color:green;" value="██">
 										</div>
@@ -234,7 +258,7 @@
 								</div>
 								<div class="device-obj type-ETH" style="order:2;">
 									<div class="device-head">
-										<div class="device-title">коммутатор#2_..184.52</div>
+										<div class="device-title">EthernetSwitch#2_10.221.<b>184.52</b></div>
 										<div class="device-ping">
 											<span class="ping-result">2.12ms</span><input type="button" style="color:green;" value="██">
 										</div>
@@ -248,7 +272,7 @@
 								</div>
 								<div class="device-obj type-OP" style="order:2;">
 									<div class="device-head">
-										<div class="device-title">опт.приемник#2_..84.52</div>
+										<div class="device-title">OPT_Receiver#2_10.221.<b>84.52</b></div>
 										<div class="device-ping">
 											<span class="ping-result">2.24ms</span><input type="button" style="color:green;" value="██">
 										</div>
@@ -267,7 +291,7 @@
 							<div class="device-list">
 								<div class="device-obj type-ETH" style="order:3;">
 									<div class="device-head">
-										<div class="device-title">коммутатор#3_..184.36</div>
+										<div class="device-title">EthernetSwitch#3_10.221.<b>184.36</b></div>
 										<div class="device-ping">	
 											<span class="ping-result">1.11ms</span><input type="button" style="color:green;" value="██">
 										</div>
@@ -281,7 +305,7 @@
 								</div>
 								<div class="device-obj type-ETH" style="order:5;">
 									<div class="device-head">
-										<div class="device-title">коммутатор#5_..184.35</div>
+										<div class="device-title">EthernetSwitch#5_10.221.<b>184.35</b></div>
 										<div class="device-ping">
 											<span class="ping-result">1.33ms</span><input type="button" style="color:green;" value="██">
 										</div>
@@ -295,7 +319,7 @@
 								</div>
 								<div class="device-obj type-OP" style="order:1;">
 									<div class="device-head">
-										<div class="device-title">опт.приемник#1_..84.53</div>
+										<div class="device-title">OPT_Receiver#1_10.221.<b>84.53</b></div>
 										<div class="device-ping">
 											<span class="ping-result"></span><input type="button" style="color:red;" value="██">
 										</div>
@@ -303,7 +327,7 @@
 									<div class="device-footer">
 										<div class="device-model">RTM OR862-I</div>
 										<div class="device-discovery">
-											<span class="discovery-result">20.04.2021 10:00:00</span><input type="button" style="color:darkorange;" value="██">
+											<span class="discovery-result">20.04.2021 10:00:00</span><input type="button" style="color:gray;" value="██" disabled>
 										</div>
 									</div>
 								</div>
@@ -314,7 +338,7 @@
 							<div class="device-list">
 								<div class="device-obj type-ETH" style="order:7;">
 									<div class="device-head">
-										<div class="device-title">коммутатор#7_..184.26</div>
+										<div class="device-title">EthernetSwitch#7_10.221.<b>184.26</b></div>
 										<div class="device-ping">
 											<span class="ping-result">3.22ms</span><input type="button" style="color:green;" value="██">
 										</div>
@@ -328,7 +352,7 @@
 								</div>
 								<div class="device-obj type-ETH" style="order:8;">
 									<div class="device-head">
-										<div class="device-title">коммутатор#8_..184.25</div>
+										<div class="device-title">EthernetSwitch#8_10.221.<b>184.25</b></div>
 										<div class="device-ping">
 											<span class="ping-result"></span><input type="button" style="color:red;" value="██">
 										</div>
@@ -336,7 +360,21 @@
 									<div class="device-footer">
 										<div class="device-model">D-LINK DES-3200-52</div>
 										<div class="device-discovery">
-											<span class="discovery-result">20.04.2021 10:10:20</span><input type="button" style="color:red;" value="██">
+											<span class="discovery-result">20.04.2021 10:10:20</span><input type="button" style="color:gray;" value="██" disabled>
+										</div>
+									</div>
+								</div>
+								<div class="device-obj type-A" style="order:1;">
+									<div class="device-head">
+										<div class="device-title">CoaxialAmplifer#1</div>
+										<div class="device-ping">
+											<span class="ping-result"></span><input type="button" style="color:gray;" value="██" disabled>
+										</div>
+									</div>
+									<div class="device-footer">
+										<div class="device-model">PLANAR SDO1200</div>
+										<div class="device-discovery">
+											<span class="discovery-result" style="color:gray;">недостаточно данных для опроса</span><input type="button" style="color:gray;" value="██" disabled>
 										</div>
 									</div>
 								</div>
@@ -346,53 +384,44 @@
 					</div>
 					<div class="rack-fake">
 						<div class="device-ping">
-							<span class="ping-result">пинг всего:</span><input type="button" style="color:cornflowerblue;" value="██">
-						</div>
-						<div class="device-discovery"><!--"STATUS":"SUCCESSFULLY","DSCV_DATE":"2021-04-17T10:19:29.000+03:00","ERROR_TYPE":null,"ERROR_TEXT":null-->
-							<span class="discovery-result">опрос всего:</span><input type="button" style="color:cornflowerblue;" value="██">
+							<span class="ping-result" id="devices_count">ping [8]:</span><input type="button" style="color:gray;" id="btn_anim1" value=" ░░">
+							<script>document.getElementById('btn_anim1').addEventListener('click',function(event){animIcon(event)});</script>
 						</div>
 						<div class="add-device">
-							<input type="text" id="newIP_1" placeholder="10" value="10" disabled>
-							<span>.</span>
-							<input type="text" id="newIP_2" placeholder="2xx" value="">
-							<span>.</span>
-							<input type="text" id="newIP_3" placeholder="xxx" value="">
-							<span>.</span>
-							<input type="text" id="newIP_4" placeholder="xxx" value="">
+							<input type="text" id="newIP" placeholder="10.2xx.xxx.xxx" value="10.221.">
 							<span style="width:1em;"></span>
 							<input type="button" id="add_generic" value="добавить">
+							<span style="margin-left:1em;" id="err_newIP"></span>
 							<script>
-								document.getElementById('newIP_2').addEventListener('keydown',function(e){if(e.keyCode===13){document.getElementById('add_generic').click()}});
-								document.getElementById('newIP_3').addEventListener('keydown',function(e){if(e.keyCode===13){document.getElementById('add_generic').click()}});
-								document.getElementById('newIP_4').addEventListener('keydown',function(e){if(e.keyCode===13){document.getElementById('add_generic').click()}});
+								document.getElementById('newIP').addEventListener('keydown',function(e){if(e.keyCode===13){document.getElementById('add_generic').click()}});
 								document.getElementById('add_generic').addEventListener('click',function(event){
-									if(!document.getElementById('newIP_1').value){return};
-									if(!document.getElementById('newIP_2').value){return};
-									if(!document.getElementById('newIP_3').value){return};
-									if(!document.getElementById('newIP_4').value){return};
-									if(!document.getElementById('generic_list')){
-										document.getElementById('generic_rack').insertAdjacentHTML('afterBegin',`	
-											<div class="rack-title">дополнительное оборудование:</div>
-											<div class="device-list" id="generic_list"></div>`);
-									};
+									if(!document.getElementById('newIP').value){return};
+									if(document.getElementById('newIP').value.length<9){return};
+									let ip=document.getElementById('newIP').value.split('.');
+									if(ip.length!=4){return};if(ip[0]!='10'){return}else{ip[0]=10};
+									ip[1]=ip[1].match(/[0-9]/g);if(!ip[1]||ip[1].length>3){return}else{ip[1]=parseInt(ip[1].join(''),10)};if((ip[1]<200||ip[1]>255)&&ip[1]!=0){return};
+									ip[2]=ip[2].match(/[0-9]/g);if(!ip[2]||ip[2].length>3){return}else{ip[2]=parseInt(ip[2].join(''),10)};if((ip[2]<0||ip[2]>255)&&ip[2]!=0){return};
+									ip[3]=ip[3].match(/[0-9]/g);if(!ip[3]||ip[3].length>3){return}else{ip[3]=parseInt(ip[3].join(''),10)};if((ip[3]<0||ip[3]>255)&&ip[3]!=0){return};
+									let ipStr=ip.join('.');
+									if(document.getElementById(ipStr)){return};
+									if(!document.getElementById('generic_list')){document.getElementById('generic_rack').insertAdjacentHTML('afterBegin',`<div class="rack-title">дополнительное оборудование:</div><div class="device-list" id="generic_list"></div>`);};
 									let count=++document.getElementById('generic_list').children.length;
-									let ip=document.getElementById('newIP_1').value+`.`+document.getElementById('newIP_2').value+`.`+document.getElementById('newIP_3').value+`.`+document.getElementById('newIP_4').value;
-									if(document.getElementById(ip)){return};
 									document.getElementById('generic_list').insertAdjacentHTML('beforeEnd',`	
-										<div class="device-obj type-CPE" id="`+ip+`" style="order:`+count+`;">
+										<div class="device-obj type-CPE" id="`+ipStr+`" style="order:`+count+`;">
 											<div class="device-head">
-												<div class="device-title">add.device#`+count+`_`+ip+`</div>
+												<div class="device-title">add.device#`+count+`_`+([ip[0],ip[1],'<b>'+ip[2],ip[3]+'</b>'].join('.'))+`</div>
 												<div class="device-ping">
 													<span class="ping-result">3.11ms</span><input type="button" style="color:green;" value="██">
 												</div>
 											</div>
 											<div class="device-footer">
-												<div class="device-model"></div>
+												<div class="device-model">generic</div>
 												<div class="device-discovery">
-													<span class="discovery-result" style="color:gray;">объект не существует</span><input type="button" style="color:gray;" value="██" disabled>
+													<span class="discovery-result" style="color:gray;">недостаточно данных для опроса</span><input type="button" style="color:gray;" value="██" disabled>
 												</div>
 											</div>
 										</div>`);
+									document.getElementById('devices_count').innerHTML='ping ['+document.getElementsByClassName('device-obj').length+']:';
 								});
 							</script>
 						</div>
@@ -466,7 +495,7 @@
 						<tbody>
 							<tr>
 								<td></td>
-								<td>270</td>
+								<td class="cell-flat">270</td>
 								<td class="cell-input input-ip"><input type="text" value="10.221.180.168" placeholder="10.221.134.202"></td>
 								<td class="cell-input input-port"><input type="text" value="40" placeholder="19"></td>
 								<td><input type="button" style="color:green;" value=" ██"></td>
@@ -476,50 +505,32 @@
 							</tr>
 							<tr>
 								<td></td>
-								<td>289</td>
+								<td class="cell-flat">289</td>
 								<td class="cell-input input-ip"><input type="text" value="10.221.180.168" placeholder="10.221.134.202"></td>
 								<td class="cell-input input-port"><input type="text" value="43" placeholder="10"></td>
 								<td><input type="button" style="color:darkorange;" value=" ▓▓"></td>
-								<td>не верный порт</td>
+								<td>работает 50/50</td>
 								<td><input type="button" class="btn_checkbox" value="░░" onclick="if(this.value=='▓▓'){this.value='░░'}else{this.value='▓▓'}"></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td>144</td>
+								<td class="cell-flat">144</td>
 								<td class="cell-input input-ip"><input type="text" value="10.221.180.168" placeholder="10.221.134.202"></td>
 								<td class="cell-input input-port"><input type="text" value="45" placeholder="13"></td>
-								<td><input type="button" style="color:cornflowerblue;" id="btn_anim" value=" ► "></td>
-								<script>
-									document.getElementById('btn_anim').addEventListener('click',function(event){
-										event.target.setAttribute('disabled','disabled');
-										let timer=setTimeout(anim,100);
-										function anim(){
-											switch(event.target.value){
-												case' ► ':event.target.value=' ▀ ';timer=setTimeout(anim,100);break;
-												case' ▀▀':event.target.value='  ▀';timer=setTimeout(anim,100);break;
-												case'  ▀':event.target.value='  █';timer=setTimeout(anim,100);break;
-												case'  █':event.target.value='  ▄';timer=setTimeout(anim,100);break;
-												case'  ▄':event.target.value=' ▄▄';timer=setTimeout(anim,100);break;
-												case' ▄▄':event.target.value=' ▄ ';timer=setTimeout(anim,100);break;
-												case' ▄ ':event.target.value=' █ ';timer=setTimeout(anim,100);break;
-												case' █ ':event.target.value=' ▀ ';timer=setTimeout(anim,100);break;
-												case' ▀ ':event.target.value=' ▀▀';timer=setTimeout(anim,100);break;
-											};
-										};
-									});
-								</script>
+								<td><input type="button" style="color:gray;" id="btn_anim" value=" ░░"></td>
+								<script>document.getElementById('btn_anim').addEventListener('click',function(event){animIcon(event)});</script>
 								<td>проверка...</td>
 								<td><input type="button" class="btn_checkbox" value="░░" onclick="if(this.value=='▓▓'){this.value='░░'}else{this.value='▓▓'}"></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td>1224</td>
+								<td class="cell-flat">1224</td>
 								<td class="cell-input input-ip"><input type="text" value="" placeholder="10.221.134.202"></td>
 								<td class="cell-input input-port"><input type="text" value="" placeholder="9"></td>
 								<td><input type="button" style="color:red;" value=" ██"></td>
-								<td>не авторизован</td>
+								<td>не работает</td>
 								<td><input type="button" class="btn_checkbox" value="░░" onclick="if(this.value=='▓▓'){this.value='░░'}else{this.value='▓▓'}"></td>
 								<td></td>
 							</tr>
