@@ -12,7 +12,6 @@
 				flex-direction:column;
 				box-sizing:border-box;
 				margin:4px;
-				margin-top:0px;
 				font-family:arial;
 				color:#000;
 				font-size:8pt;
@@ -29,13 +28,15 @@
 				.tile-search{display:inline-flex;background-color:#fff;order:-1;}
 					.loader-line{width:100%;padding-left:1em;background-color:#35a6dc;background-image:linear-gradient(45deg,rgba(255,255,255,0.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.15) 50%,rgba(255,255,255,0.15) 75%,transparent 75%,transparent);background-size:1rem 1rem;animation:progress-bar-stripes 1s linear infinite;}
 					@keyframes progress-bar-stripes{from{background-position:1rem 0}to{background-position:0 0}}
-				.tile-result{margin-top:4px;}
-				.tile-result>*{width:100%;}
+				.tile-result{}
+				.tile-result>*{/*width:100%;*/}
 				.tile-warning{background-color:#fee;}
 				.tile-unknown{background-color:#fed;}
 				.tile-building{background-color:#fff;}
 				.tile-building>*{margin-bottom:2px;}
 					.content-x-scroll{overflow-x:auto;overflow-y:hidden;}
+		</style>
+		<style type="text/css">
 						.entrances-grid{display:grid;grid-column-gap:2px;width:min-content;}
 							.floors-over{display:flex;flex-direction:column-reverse;}
 								.entrance-head{background-color:#eee;border: 1px solid #000;min-width:114px;}
@@ -99,30 +100,24 @@
 												.flat-service{display:none;line-height:7pt;}
 												.flat-service.red{display:block;color:tomato;}
 												.flat-service.green{display:block;color:forestgreen;}
-						
-						
 						.devices-without{/*display:flex;*//*flex-direction:column;*/}
-						
+		</style>
+		<style type="text/css">
 						table{border-collapse:collapse;width:fit-content;}
-						tr th{border:1px solid #000;background-color:#ffe4b5;height:12px;text-align:center;font-weight:unset;}
-						tr td{border:1px solid #000;background-color:#e0e0e0;height:12px;}
-						td.cell-flat{text-align:right;}
+						tr>th{border:1px solid #000;background-color:#ffe4b5;height:12px;text-align:center;font-weight:unset;}
+						tr>td{border:1px solid #000;background-color:#e0e0e0;height:12px;text-align:right;}
 						th.cell-desc{min-width:127px;}
-						th.cell-input input[type="text"],td.cell-input input[type="text"]{width:100px;padding:0px;}
-						th.cell-input input[type="text"].edt,td.cell-input input[type="text"].edt{background-color:#ffffe0;}
-						th.cell-input input[type="text"]:hover:not(:disabled),td.cell-input input[type="text"]:hover:not(:disabled){background-color:#eeeeff;}
+						td.cell-desc{text-align:left;}
+						th.cell-input>input[type="text"],td.cell-input>input[type="text"]{width:100px;padding:0px;}
+						th.cell-input>input[type="text"].edt,td.cell-input>input[type="text"].edt{/*background-color:#ffffe0;*/}
+						th.cell-input>input[type="text"]:hover:not(:disabled),td.cell-input>input[type="text"]:hover:not(:disabled){/*background-color:#eeeeff;*/}
 						th.input-ip,td.input-ip{text-align:right;}
-						th.input-ip input[type="text"],td.input-ip input[type="text"]{width:75px;text-align:left;}
-						th.input-port input[type="text"],td.input-port input[type="text"]{width:25px;text-align:right;}
+						th.input-ip>input[type="text"],td.input-ip>input[type="text"]{width:8em;text-align:left;}
+						th.input-port>input[type="text"],td.input-port>input[type="text"]{width:2em;text-align:right;}
 						
-						th input[type="button"],td input[type="button"]{padding:0px;font-family:monospace;}
-						th select,td select{font-size:8pt;}
-						th input[type="checkbox"],td input[type="checkbox"]{margin:0px;}
-						
-			.hide{display:none;}
-			.ghost{opacity:0.3;}
-			
-			@supports not (display:grid){*{display:none;}}
+						th>input[type="button"],td>input[type="button"]{padding:0px;font-family:monospace;}
+						th>select,td>select{font-size:8pt;}
+						th>input[type="checkbox"],td>input[type="checkbox"]{margin:0px;}
 		</style>
 		<style type="text/css">
 			.myloader-line{
@@ -150,23 +145,59 @@
 				}
 			}
 		</style>
+		<style type="text/css">
+			#devices .rack-list{display:flex;flex-direction:row;flex-wrap:wrap;}
+			#devices .rack-obj{width:30em;height:fit-content;margin:1em;margin-top:0.5em;margin-bottom:0.5em;border:1px solid #000;border-radius:2px;background-color:#ddd;}
+			#devices .rack-fake{width:30em;height:fit-content;margin:1em;margin-top:0.5em;margin-bottom:0.5em;}
+			#devices .rack-title{text-align:center;}
+			#devices .rack-fake .rack-title{text-align:left;}
+			#devices .device-list{display:flex;flex-direction:column;}
+			#devices .device-obj{width:28em;margin:1em;margin-top:0.2em;margin-bottom:0.2em;border:1px solid #000;border-radius:1px;/*background-color:#fff;*/}
+			#devices .device-head{display:inline-flex;justify-content:space-between;width:100%;}
+			#devices .device-title{margin-left:0.5em;padding-top:0.2em;text-align:left;}
+			#devices input[type="text"]{padding:0px;}
+			#devices .device-title>input[type="text"]{width:7em;margin-right:1em;}
+			#devices .device-ping{text-align:right;}
+			#devices .ping-result{margin-right:0.2em;}
+			#devices input[type="button"]{padding:0px;font-family:monospace;}
+			#devices .device-footer{display:inline-flex;justify-content:space-between;width:100%;}
+			#devices .device-model{margin-left:0.5em;text-align:left;margin-top:0.2em;font-stretch:condensed;}
+			#devices .device-discovery{text-align:right;}
+			#devices .discovery-result{margin-right:0.2em;}
+			#devices .add-device{display:inline-flex;}
+			#devices .add-device input[type="text"]{width:75px;}
+		</style>
+		<style type="text/css">
+			.hide{display:none;}
+			.ghost{opacity:0.3;}
+			@supports not (display:grid){*{display:none;}}
+		</style>
 	</head>
 	<body>
-		<script>
-			function animIcon(event){
+		<script type="text/javascript">
+			function animIcon(event,once=true){
 				event.target.setAttribute('disabled','disabled');
+				event.target.initialIcon=event.target.value;
 				let timer=setTimeout(anim,100);
 				function anim(){
 					switch(event.target.value){
-						case' ▀ ':event.target.value=' ▀▀';timer=setTimeout(anim,100);break;
-						case' ▀▀':event.target.value='  ▀';timer=setTimeout(anim,100);break;
-						case'  ▀':event.target.value='  █';timer=setTimeout(anim,100);break;
-						case'  █':event.target.value='  ▄';timer=setTimeout(anim,100);break;
-						case'  ▄':event.target.value=' ▄▄';timer=setTimeout(anim,100);break;
-						case' ▄▄':event.target.value=' ▄ ';timer=setTimeout(anim,100);break;
-						case' ▄ ':event.target.value=' █ ';timer=setTimeout(anim,100);break;
-						case' █ ':event.target.value=' ▀ ';timer=setTimeout(anim,100);break;
-						default:event.target.value=' ▀ ';timer=setTimeout(anim,100);break;
+						case'▀ ':event.target.value='▀▀';timer=setTimeout(anim,100);break;
+						case'▀▀':event.target.value=' ▀';timer=setTimeout(anim,100);break;
+						case' ▀':event.target.value=' █';timer=setTimeout(anim,100);break;
+						case' █':event.target.value=' ▄';timer=setTimeout(anim,100);break;
+						case' ▄':event.target.value='▄▄';timer=setTimeout(anim,100);break;
+						case'▄▄':event.target.value='▄ ';timer=setTimeout(anim,100);break;
+						case'▄ ':event.target.value='█ ';timer=setTimeout(anim,100);break;
+						case'█ ':event.target.value='▀ ';
+						if(!once){
+							timer=setTimeout(anim,100);
+						}else{
+							clearTimeout(timer);
+							event.target.removeAttribute('disabled');
+							event.target.value=event.target.initialIcon;
+						};
+						break;
+						default:event.target.value='▀ ';timer=setTimeout(anim,100);break;
 					};
 				};
 			};
@@ -177,74 +208,55 @@
 				<div id="loader_search" class="myloader-line hide"></div>
 			</div>
 			<input id="btn_search" type="button" value="найти">
+			<script type="text/javascript">
+				document.getElementById('input_search').addEventListener('keydown',function(e){if(e.keyCode===13){document.getElementById('btn_search').click()}});
+				document.getElementById('btn_search').addEventListener('click',function(){
+					document.getElementById('loader_search').classList.toggle('hide');
+					for(let tile of document.getElementsByClassName('tile-result')){
+						tile.classList.add('hide');
+					};
+					let demotile=document.getElementsByClassName(document.getElementById('input_search').value);
+					if(demotile.length>0){
+						demotile[0].classList.remove('hide');
+						document.getElementsByClassName('tile-search')[0].classList.toggle('hide');
+					};
+					document.getElementById('loader_search').classList.toggle('hide');
+				});
+			</script>
 		</div>
-		<script>
-			document.getElementById('input_search').addEventListener('keydown',function(e){if(e.keyCode===13){document.getElementById('btn_search').click()}});
-			document.getElementById('btn_search').addEventListener('click',function(){
-				document.getElementById('loader_search').classList.toggle('hide');
-				for(let tile of document.getElementsByClassName('tile-result')){
-					tile.classList.add('hide');
-				};
-				let demotile=document.getElementsByClassName(document.getElementById('input_search').value);
-				if(demotile.length>0){
-					demotile[0].classList.remove('hide');
-					document.getElementsByClassName('tile-search')[0].classList.toggle('hide');
-				};
-				document.getElementById('loader_search').classList.toggle('hide');
-			});
-		</script>
 		<div class="tile tile-result tile-building hide demo1" id="9135155037413562085">
 			<div>
 				<span>Россия, обл. Новосибирская, г. Новосибирск, ул. Сибирская, д. 26</span>
 			</div>
 			<hr>
 			<div style="text-align:right;">
-				<select onchange="selectMode(event);">
-					<option disabled></option>
-					<option selected>оборудование</option>
-					<option>план-схема</option>
-					<option>абоненты</option>
+				<select id="selector_view">
+					<option value="devices" selected>оборудование</option>
+					<option value="struct">план-схема</option>
+					<option value="abons">абоненты</option>
 				</select>
+				<script type="text/javascript">
+					document.getElementById('selector_view').addEventListener('change',function(event){console.log(event.target.value);
+						for(let view of document.getElementsByClassName('view')){
+							view.classList.add('hide');
+						};
+						if(!document.getElementById(event.target.value)){return};
+						document.getElementById(event.target.value).classList.remove('hide');
+					});
+				</script>
 			</div>
-			<script>
-				function selectMode(event){
-					console.log(event.target.value);
-					for(let container of document.getElementsByClassName('container')){
-						container.classList.add('hide');
-					};
-					let container=document.getElementsByName(event.target.value);
-					if(container.length>0){container[0].classList.remove('hide');};
-				};
-			</script>
 			<div class="content-x-scroll">
-				<div style="/*width:max-content;*/" class="container o" name="оборудование">
-					<style type="text/css">
-						.o .rack-list{display:flex;flex-direction:row;flex-wrap:wrap;}
-						.o .rack-obj{width:30em;height:fit-content;margin:1em;margin-top:0.5em;margin-bottom:0.5em;border:1px solid #000;border-radius:2px;background-color:#aaa;}
-						.o .rack-fake{width:30em;height:fit-content;margin:1em;margin-top:0.5em;margin-bottom:0.5em;}
-						.o .rack-title{text-align:center;}
-						.o .rack-fake .rack-title{text-align:left;}
-						.o .device-list{display:flex;flex-direction:column;}
-						.o .device-obj{width:28em;margin:1em;margin-top:0.2em;margin-bottom:0.2em;border:1px solid #000;border-radius:1px;/*background-color:#fff;*/}
-						.o .device-head{display:inline-flex;justify-content:space-between;width:100%;}
-						.o .device-title{margin-left:0.5em;padding-top:0.2em;text-align:left;}
-						.o .device-ping{text-align:right;}
-						.o .ping-result{margin-right:1em;}
-						.o input[type="button"]{padding:0px;font-family:monospace;}
-						.o .device-footer{display:inline-flex;justify-content:space-between;width:100%;}
-						.o .device-model{margin-left:0.5em;text-align:left;margin-top:0.2em;}
-						.o .device-discovery{text-align:right;}
-						.o .discovery-result{margin-right:1em;}
-						.o .add-device{display:inline-flex;}
-						.o .add-device input[type="text"]{width:75px;}
-					</style>
+				<div style="/*width:max-content;*/" class="view" id="devices">
 					<div class="rack-list">
 						<div class="rack-obj" style="order:1;">
 							<div class="rack-title">шкаф#1_подъезд4.этаж17</div>
 							<div class="device-list">
-								<div class="device-obj type-ETH" style="order:1;">
+								<div class="device-obj type-ETH" id="10.221.184.56" style="order:1;">
 									<div class="device-head">
-										<div class="device-title">EthernetSwitch#1_10.221.<b>184.56</b></div>
+										<div class="device-title">
+											<input type="text" value="10.221.184.56" disabled="">
+											<span>EthernetSwitch#1</span>
+										</div>
 										<div class="device-ping">
 											<span class="ping-result">2.43ms</span><input type="button" style="color:green;" value="██">
 										</div>
@@ -256,9 +268,12 @@
 										</div>
 									</div>
 								</div>
-								<div class="device-obj type-ETH" style="order:2;">
+								<div class="device-obj type-ETH" id="10.221.184.52" style="order:2;">
 									<div class="device-head">
-										<div class="device-title">EthernetSwitch#2_10.221.<b>184.52</b></div>
+										<div class="device-title">
+											<input type="text" value="10.221.184.52" disabled="">
+											<span>EthernetSwitch#2</span>
+										</div>
 										<div class="device-ping">
 											<span class="ping-result">2.12ms</span><input type="button" style="color:green;" value="██">
 										</div>
@@ -270,9 +285,12 @@
 										</div>
 									</div>
 								</div>
-								<div class="device-obj type-OP" style="order:2;">
+								<div class="device-obj type-OP" id="10.221.84.52" style="order:2;">
 									<div class="device-head">
-										<div class="device-title">OPT_Receiver#2_10.221.<b>84.52</b></div>
+										<div class="device-title">
+											<input type="text" value="10.221.84.52" disabled="">
+											<span>OptReceiver#2</span>
+										</div>
 										<div class="device-ping">
 											<span class="ping-result">2.24ms</span><input type="button" style="color:green;" value="██">
 										</div>
@@ -289,9 +307,12 @@
 						<div class="rack-obj" style="order:2;">
 							<div class="rack-title">шкаф#2_подъезд4.подвал</div>
 							<div class="device-list">
-								<div class="device-obj type-ETH" style="order:3;">
+								<div class="device-obj type-ETH" id="10.221.184.36" style="order:3;">
 									<div class="device-head">
-										<div class="device-title">EthernetSwitch#3_10.221.<b>184.36</b></div>
+										<div class="device-title">
+											<input type="text" value="10.221.184.36" disabled="">
+											<span>EthernetSwitch#3</span>
+										</div>
 										<div class="device-ping">	
 											<span class="ping-result">1.11ms</span><input type="button" style="color:green;" value="██">
 										</div>
@@ -303,9 +324,12 @@
 										</div>
 									</div>
 								</div>
-								<div class="device-obj type-ETH" style="order:5;">
+								<div class="device-obj type-ETH" id="10.221.184.35" style="order:5;">
 									<div class="device-head">
-										<div class="device-title">EthernetSwitch#5_10.221.<b>184.35</b></div>
+										<div class="device-title">
+											<input type="text" value="10.221.184.35" disabled="">
+											<span>EthernetSwitch#5</span>
+										</div>
 										<div class="device-ping">
 											<span class="ping-result">1.33ms</span><input type="button" style="color:green;" value="██">
 										</div>
@@ -317,9 +341,12 @@
 										</div>
 									</div>
 								</div>
-								<div class="device-obj type-OP" style="order:1;">
+								<div class="device-obj type-OP" id="10.221.84.53" style="order:1;">
 									<div class="device-head">
-										<div class="device-title">OPT_Receiver#1_10.221.<b>84.53</b></div>
+										<div class="device-title">
+											<input type="text" value="10.221.84.53" disabled="">
+											<span>OptReceiver#1</span>
+										</div>
 										<div class="device-ping">
 											<span class="ping-result"></span><input type="button" style="color:red;" value="██">
 										</div>
@@ -336,9 +363,12 @@
 						<div class="rack-fake" style="order:9998;">
 							<div class="rack-title">оборудование вне шкафа:</div>
 							<div class="device-list">
-								<div class="device-obj type-ETH" style="order:7;">
+								<div class="device-obj type-ETH" id="10.221.153.168" style="order:12;">
 									<div class="device-head">
-										<div class="device-title">EthernetSwitch#7_10.221.<b>184.26</b></div>
+										<div class="device-title">
+											<input type="text" value="10.221.153.168" disabled="">
+											<span>EthernetSwitch#12</span>
+										</div>
 										<div class="device-ping">
 											<span class="ping-result">3.22ms</span><input type="button" style="color:green;" value="██">
 										</div>
@@ -350,9 +380,29 @@
 										</div>
 									</div>
 								</div>
-								<div class="device-obj type-ETH" style="order:8;">
+								<div class="device-obj type-ETH" id="10.221.184.25" style="order:7;">
 									<div class="device-head">
-										<div class="device-title">EthernetSwitch#8_10.221.<b>184.25</b></div>
+										<div class="device-title">
+											<input type="text" value="10.221.184.25" disabled="">
+											<span>EthernetSwitch#7</span>
+										</div>
+										<div class="device-ping">
+											<span class="ping-result">3.22ms</span><input type="button" style="color:green;" value="██">
+										</div>
+									</div>
+									<div class="device-footer">
+										<div class="device-model">FIBERHOME S4820-28T-X</div>
+										<div class="device-discovery">
+											<span class="discovery-result">20.04.2021 10:09:09</span><input type="button" style="color:green;" value="██">
+										</div>
+									</div>
+								</div>
+								<div class="device-obj type-ETH" id="10.221.184.26" style="order:8;">
+									<div class="device-head">
+										<div class="device-title">
+											<input type="text" value="10.221.184.26" disabled="">
+											<span>EthernetSwitch#8</span>
+										</div>
 										<div class="device-ping">
 											<span class="ping-result"></span><input type="button" style="color:red;" value="██">
 										</div>
@@ -366,7 +416,10 @@
 								</div>
 								<div class="device-obj type-A" style="order:1;">
 									<div class="device-head">
-										<div class="device-title">CoaxialAmplifer#1</div>
+										<div class="device-title">
+											<input type="text" value="" disabled="">
+											<span>CoaxialAmplifer#1</span>
+										</div>
 										<div class="device-ping">
 											<span class="ping-result"></span><input type="button" style="color:gray;" value="██" disabled>
 										</div>
@@ -380,42 +433,44 @@
 								</div>
 							</div>
 						</div>
-						<div class="rack-fake" id="generic_rack" style="order:9999;"></div>
+						<div class="rack-fake" id="ICMPOnly_rack" style="order:9999;"></div>
 					</div>
 					<div class="rack-fake">
 						<div class="device-ping">
-							<span class="ping-result" id="devices_count">ping [8]:</span><input type="button" style="color:gray;" id="btn_anim1" value=" ░░">
-							<script>document.getElementById('btn_anim1').addEventListener('click',function(event){animIcon(event)});</script>
+							<span class="ping-result" id="devices_count">ping [8]:</span><input type="button" style="color:gray;" id="btn_anim1" value="░░">
+							<script type="text/javascript">document.getElementById('btn_anim1').addEventListener('click',function(event){animIcon(event)});</script>
 						</div>
 						<div class="add-device">
-							<input type="text" id="newIP" placeholder="10.2xx.xxx.xxx" value="10.221.">
+							<input type="text" inputmode="numeric" id="in_newIP" placeholder="10.2xx.xxx.xxx" value="">
 							<span style="width:1em;"></span>
-							<input type="button" id="add_generic" value="добавить">
-							<span style="margin-left:1em;" id="err_newIP"></span>
-							<script>
-								document.getElementById('newIP').addEventListener('keydown',function(e){if(e.keyCode===13){document.getElementById('add_generic').click()}});
-								document.getElementById('add_generic').addEventListener('click',function(event){
-									if(!document.getElementById('newIP').value){return};
-									if(document.getElementById('newIP').value.length<9){return};
-									let ip=document.getElementById('newIP').value.split('.');
+							<input type="button" id="btn_ICMPOnly" value="добавить">
+							<script type="text/javascript">
+								document.getElementById('in_newIP').addEventListener('keydown',function(e){if(e.keyCode===13){document.getElementById('btn_ICMPOnly').click()}});
+								document.getElementById('btn_ICMPOnly').addEventListener('click',function(event){
+									if(!document.getElementById('in_newIP').value){return};
+									if(document.getElementById('in_newIP').value.length<9){return};
+									let ip=document.getElementById('in_newIP').value.split('.');
 									if(ip.length!=4){return};if(ip[0]!='10'){return}else{ip[0]=10};
 									ip[1]=ip[1].match(/[0-9]/g);if(!ip[1]||ip[1].length>3){return}else{ip[1]=parseInt(ip[1].join(''),10)};if((ip[1]<200||ip[1]>255)&&ip[1]!=0){return};
 									ip[2]=ip[2].match(/[0-9]/g);if(!ip[2]||ip[2].length>3){return}else{ip[2]=parseInt(ip[2].join(''),10)};if((ip[2]<0||ip[2]>255)&&ip[2]!=0){return};
 									ip[3]=ip[3].match(/[0-9]/g);if(!ip[3]||ip[3].length>3){return}else{ip[3]=parseInt(ip[3].join(''),10)};if((ip[3]<0||ip[3]>255)&&ip[3]!=0){return};
 									let ipStr=ip.join('.');
 									if(document.getElementById(ipStr)){return};
-									if(!document.getElementById('generic_list')){document.getElementById('generic_rack').insertAdjacentHTML('afterBegin',`<div class="rack-title">дополнительное оборудование:</div><div class="device-list" id="generic_list"></div>`);};
-									let count=++document.getElementById('generic_list').children.length;
-									document.getElementById('generic_list').insertAdjacentHTML('beforeEnd',`	
-										<div class="device-obj type-CPE" id="`+ipStr+`" style="order:`+count+`;">
+									if(!document.getElementById('ICMPOnly_list')){document.getElementById('ICMPOnly_rack').insertAdjacentHTML('afterBegin',`<div class="rack-title">дополнительное оборудование:</div><div class="device-list" id="ICMPOnly_list"></div>`);};
+									let count=++document.getElementById('ICMPOnly_list').children.length;
+									document.getElementById('ICMPOnly_list').insertAdjacentHTML('beforeEnd',`	
+										<div class="device-obj type-CPE type-ICMP" id="`+ipStr+`" style="order:`+count+`;">
 											<div class="device-head">
-												<div class="device-title">add.device#`+count+`_`+([ip[0],ip[1],'<b>'+ip[2],ip[3]+'</b>'].join('.'))+`</div>
+												<div class="device-title">
+													<input type="text" value="`+ipStr+`" disabled="">
+													<span>ICMPOnly#`+count+`</span>
+												</div>
 												<div class="device-ping">
 													<span class="ping-result">3.11ms</span><input type="button" style="color:green;" value="██">
 												</div>
 											</div>
 											<div class="device-footer">
-												<div class="device-model">generic</div>
+												<div class="device-model"></div>
 												<div class="device-discovery">
 													<span class="discovery-result" style="color:gray;">недостаточно данных для опроса</span><input type="button" style="color:gray;" value="██" disabled>
 												</div>
@@ -427,21 +482,21 @@
 						</div>
 					</div>
 				</div>
-				<div style="width:max-content;" class="container hide" name="план-схема">
+				<div style="width:max-content;" class="view hide" id="struct">
 					<div class="content-x-scroll"><div class="entrances-grid" id="9135155036813485134.entrances"><div class="floors-over" id="9150039437013347872.over" style="grid-column:2/3;grid-row:2/3;"><div class="entrance-head" style="order:9999;"><div class="entrance-title" id="9150039437013347872_title" title="P_54КР-00100_1 Sites_and_Devices"><a href="https://nioss/common/uobject.jsp?tab=_Sites+and+Devices&amp;object=9150039437013347872" target="_blank">P#1</a><input style="width:15px;margin-left:5px;" type="text" value="1" disabled=""></div><div><input style="width:15px;" type="text" value="5" disabled=""><input style="width:30px;margin-left:10px;" type="text" value="1" disabled=""><input style="width:30px;margin-left:5px;" type="text" value="15" disabled=""></div></div><div class="floor cherdak" id="9150039437013347872.cherdak" style="order:1001;"><div class="floor-number">Ч</div><div class="floor-objects" id="9150039437013347872.cherdak.objects"><div class="floor-racks" id="9150039437013347872.cherdak.racks"></div><div class="floor-racks floor-rk" id="9150039437013347872.cherdak.rk"></div><div class="floor-flats " id="9150039437013347872.cherdak.flats"><div class="flat-none">чердак</div></div></div></div><div class="floor tehetag" id="9150039437013347872.tehetag" style="order:1000;"><div class="floor-number">Т</div><div class="floor-objects" id="9150039437013347872.tehetag.objects"><div class="floor-racks" id="9150039437013347872.tehetag.racks"></div><div class="floor-racks floor-rk" id="9150039437013347872.tehetag.rk"></div><div class="floor-flats " id="9150039437013347872.tehetag.flats"><div class="flat-none">тех. этаж</div></div></div></div><div class="floor floor_1" id="9150039437013347872.floor_1" style="order:110;"><div class="floor-number">1</div><div class="floor-objects" id="9150039437013347872.floor_1.objects"><div class="floor-racks" id="9150039437013347872.floor_1.racks"></div><div class="floor-racks floor-rk" id="9150039437013347872.floor_1.rk"><div class="rack type-CU" id="9158921428613232836" style="order:8;"><div class="rack-head"><div class="rack-title" id="9158921428613232836_title"><a href="https://nioss/ncobject.jsp?id=9158921428613232836" target="_blank"><span class="title-norm">CU#8</span><span class="title-short">CU#8</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-8.devices_ne"></div><div class="rack-devices" id="9158921428613232836.devices_pp"></div></div></div><div class="floor-flats floor-neven" id="9150039437013347872.floor_1.flats"><div class="flat" id="9150039437013347872.flat_1" style="order:1;"><div id="9150039437013347872.flat_1.number">1</div><div class="flat-service" id="9150039437013347872.flat_1.spd">шпд</div><div class="flat-service" id="9150039437013347872.flat_1.tv">тв</div></div><div class="flat on-service inet tv" id="9150039437013347872.flat_2" style="order:2;"><div id="9150039437013347872.flat_2.number"><a href="http://inetcore.mts.ru/#/6-091-0343272" target="_blank">2</a></div><div class="flat-service green" id="9150039437013347872.flat_2.spd">шпд</div><div class="flat-service green" id="9150039437013347872.flat_2.tv">тв</div></div><div class="flat on-service tv" id="9150039437013347872.flat_3" style="order:3;"><div id="9150039437013347872.flat_3.number"><a href="http://inetcore.mts.ru/#/6-090-0027428" target="_blank">3</a></div><div class="flat-service" id="9150039437013347872.flat_3.spd">шпд</div><div class="flat-service green" id="9150039437013347872.flat_3.tv">тв</div></div></div></div></div><div class="floor floor_2" id="9150039437013347872.floor_2" style="order:120;"><div class="floor-number">2</div><div class="floor-objects" id="9150039437013347872.floor_2.objects"><div class="floor-racks" id="9150039437013347872.floor_2.racks"></div><div class="floor-racks floor-rk" id="9150039437013347872.floor_2.rk"><div class="rack type-CU" id="9158921420213232936" style="order:27;"><div class="rack-head"><div class="rack-title" id="9158921420213232936_title"><a href="https://nioss/ncobject.jsp?id=9158921420213232936" target="_blank"><span class="title-norm">CU#27</span><span class="title-short">CU#27</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-27.devices_ne"></div><div class="rack-devices" id="9158921420213232936.devices_pp"></div></div></div><div class="floor-flats floor-even" id="9150039437013347872.floor_2.flats"><div class="flat" id="9150039437013347872.flat_4" style="order:4;"><div id="9150039437013347872.flat_4.number">4</div><div class="flat-service" id="9150039437013347872.flat_4.spd">шпд</div><div class="flat-service" id="9150039437013347872.flat_4.tv">тв</div></div><div class="flat on-service tv inet" id="9150039437013347872.flat_5" style="order:5;"><div id="9150039437013347872.flat_5.number"><a href="http://inetcore.mts.ru/#/6-090-0026735" target="_blank">5</a></div><div class="flat-service green" id="9150039437013347872.flat_5.spd">шпд</div><div class="flat-service green" id="9150039437013347872.flat_5.tv">тв</div></div><div class="flat" id="9150039437013347872.flat_6" style="order:6;"><div id="9150039437013347872.flat_6.number">6</div><div class="flat-service" id="9150039437013347872.flat_6.spd">шпд</div><div class="flat-service" id="9150039437013347872.flat_6.tv">тв</div></div></div></div></div><div class="floor floor_3" id="9150039437013347872.floor_3" style="order:130;"><div class="floor-number">3</div><div class="floor-objects" id="9150039437013347872.floor_3.objects"><div class="floor-racks" id="9150039437013347872.floor_3.racks"></div><div class="floor-racks floor-rk" id="9150039437013347872.floor_3.rk"><div class="rack type-CU" id="9158921428013232936" style="order:21;"><div class="rack-head"><div class="rack-title" id="9158921428013232936_title"><a href="https://nioss/ncobject.jsp?id=9158921428013232936" target="_blank"><span class="title-norm">CU#21</span><span class="title-short">CU#21</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-21.devices_ne"></div><div class="rack-devices" id="9158921428013232936.devices_pp"></div></div></div><div class="floor-flats floor-neven" id="9150039437013347872.floor_3.flats"><div class="flat" id="9150039437013347872.flat_7" style="order:7;"><div id="9150039437013347872.flat_7.number">7</div><div class="flat-service" id="9150039437013347872.flat_7.spd">шпд</div><div class="flat-service" id="9150039437013347872.flat_7.tv">тв</div></div><div class="flat" id="9150039437013347872.flat_8" style="order:8;"><div id="9150039437013347872.flat_8.number">8</div><div class="flat-service" id="9150039437013347872.flat_8.spd">шпд</div><div class="flat-service" id="9150039437013347872.flat_8.tv">тв</div></div><div class="flat on-service tv" id="9150039437013347872.flat_9" style="order:9;"><div id="9150039437013347872.flat_9.number"><a href="http://inetcore.mts.ru/#/6-090-0030219" target="_blank">9</a></div><div class="flat-service" id="9150039437013347872.flat_9.spd">шпд</div><div class="flat-service red" id="9150039437013347872.flat_9.tv">тв</div></div></div></div></div><div class="floor floor_4" id="9150039437013347872.floor_4" style="order:140;"><div class="floor-number">4</div><div class="floor-objects" id="9150039437013347872.floor_4.objects"><div class="floor-racks" id="9150039437013347872.floor_4.racks"></div><div class="floor-racks floor-rk" id="9150039437013347872.floor_4.rk"><div class="rack type-CU" id="9158921421713232836" style="order:11;"><div class="rack-head"><div class="rack-title" id="9158921421713232836_title"><a href="https://nioss/ncobject.jsp?id=9158921421713232836" target="_blank"><span class="title-norm">CU#11</span><span class="title-short">CU#11</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-11.devices_ne"></div><div class="rack-devices" id="9158921421713232836.devices_pp"></div></div></div><div class="floor-flats floor-even" id="9150039437013347872.floor_4.flats"><div class="flat" id="9150039437013347872.flat_10" style="order:10;"><div id="9150039437013347872.flat_10.number">10</div><div class="flat-service" id="9150039437013347872.flat_10.spd">шпд</div><div class="flat-service" id="9150039437013347872.flat_10.tv">тв</div></div><div class="flat" id="9150039437013347872.flat_11" style="order:11;"><div id="9150039437013347872.flat_11.number">11</div><div class="flat-service" id="9150039437013347872.flat_11.spd">шпд</div><div class="flat-service" id="9150039437013347872.flat_11.tv">тв</div></div><div class="flat on-service tv" id="9150039437013347872.flat_12" style="order:12;"><div id="9150039437013347872.flat_12.number"><a href="http://inetcore.mts.ru/#/6-090-0200576" target="_blank">12</a></div><div class="flat-service" id="9150039437013347872.flat_12.spd">шпд</div><div class="flat-service green" id="9150039437013347872.flat_12.tv">тв</div></div></div></div></div><div class="floor floor_5" id="9150039437013347872.floor_5" style="order:150;"><div class="floor-number">5</div><div class="floor-objects" id="9150039437013347872.floor_5.objects"><div class="floor-racks" id="9150039437013347872.floor_5.racks"><div class="rack type-L" id="9155155240213980704" style="order:1;"><div class="rack-head"><div class="rack-title" id="9155155240213980704_title"><a href="https://nioss/ncobject.jsp?id=9155155240213980704" target="_blank"><span class="title-norm">L#1</span><span class="title-short">L#1</span></a></div></div><div class="rack-devices" id="L_54КР-00100-1.devices_ne"><div class="device type-ETH" id="ETH_54КР_00100_1"><div class="device-head"><div class="device-title" id="ETH_54КР_00100_1_title"><a href="https://nioss/ncobject.jsp?id=9139024954813107223" target="_blank"><span class="title-norm">ETH#1&nbsp;..160.139</span><span class="title-short">ETH#1</span></a></div><div class="device-led online" id="ETH_54КР_00100_1.led"></div></div></div><div class="device type-OP" id="OP_54КР_00100_1"><div class="device-head"><div class="device-title" id="OP_54КР_00100_1_title"><a href="https://nioss/ncobject.jsp?id=9142427264213698142" target="_blank"><span class="title-norm">OP#1&nbsp;..36.100</span><span class="title-short">OP#1</span></a></div><div class="device-led online" id="OP_54КР_00100_1.led"></div></div></div></div><div class="rack-devices" id="9155155240213980704.devices_pp"><div class="device type-PP" id="PP_54КР-00100_6"><div class="device-head"><div class="device-title" id="PP_54КР-00100_6_title"><a href="https://nioss/ncobject.jsp?id=9158921460413248117" target="_blank"><span class="title-norm">PP#6</span><span class="title-short">PP#6</span></a></div></div></div><div class="device type-PP" id="PP_54КР-00100_9"><div class="device-head"><div class="device-title" id="PP_54КР-00100_9_title"><a href="https://nioss/ncobject.jsp?id=9158921464913248219" target="_blank"><span class="title-norm">PP#9</span><span class="title-short">PP#9</span></a></div></div></div></div></div></div><div class="floor-racks floor-rk" id="9150039437013347872.floor_5.rk"><div class="device type-PP without" id="PP_54КР-00100_1"><div class="device-head"><div class="device-title" id="PP_54КР-00100_1_title"><a href="https://nioss/ncobject.jsp?id=9158921466213247912" target="_blank"><span class="title-norm">PP#1</span><span class="title-short">PP#1</span></a></div></div></div></div><div class="floor-flats floor-neven" id="9150039437013347872.floor_5.flats"><div class="flat on-service tv" id="9150039437013347872.flat_13" style="order:13;"><div id="9150039437013347872.flat_13.number"><a href="http://inetcore.mts.ru/#/6-090-0200577" target="_blank">13</a></div><div class="flat-service" id="9150039437013347872.flat_13.spd">шпд</div><div class="flat-service green" id="9150039437013347872.flat_13.tv">тв</div></div><div class="flat on-service tv inet" id="9150039437013347872.flat_14" style="order:14;"><div id="9150039437013347872.flat_14.number"><a href="http://inetcore.mts.ru/#/6-090-0021600" target="_blank">14</a></div><div class="flat-service green" id="9150039437013347872.flat_14.spd">шпд</div><div class="flat-service green" id="9150039437013347872.flat_14.tv">тв</div></div><div class="flat on-service tv inet" id="9150039437013347872.flat_15" style="order:15;"><div id="9150039437013347872.flat_15.number"><a href="http://inetcore.mts.ru/#/6-091-0438606" target="_blank">15</a></div><div class="flat-service green" id="9150039437013347872.flat_15.spd">шпд</div><div class="flat-service green red" id="9150039437013347872.flat_15.tv">тв</div></div></div></div></div></div><div class="floors-under" id="9150039437013347872.under" style="grid-column:2/3;grid-row:3/4;"><div class="floor podval" id="9150039437013347872.podval" style="order:1000;"><div class="floor-number">П</div><div class="floor-objects" id="9150039437013347872.podval.objects"><div class="floor-racks" id="9150039437013347872.podval.racks"></div><div class="floor-racks floor-rk" id="9150039437013347872.podval.rk"></div><div class="floor-flats " id="9150039437013347872.podval.flats"><div class="flat-none">подвал</div></div></div></div><div class="floor floor_0" id="9150039437013347872.floor_0" style="order:100;"><div class="floor-number">0</div><div class="floor-objects" id="9150039437013347872.floor_0.objects"><div class="floor-racks" id="9150039437013347872.floor_0.racks"></div><div class="floor-racks floor-rk" id="9150039437013347872.floor_0.rk"></div><div class="floor-flats floor-even" id="9150039437013347872.floor_0.flats"><div class="flat-none"></div></div></div></div></div><div class="floors-over" id="9150144196913195288.over" style="grid-column:3/4;grid-row:2/3;"><div class="entrance-head" style="order:9999;"><div class="entrance-title" id="9150144196913195288_title" title="P_54КР-00100_2 Sites_and_Devices"><a href="https://nioss/common/uobject.jsp?tab=_Sites+and+Devices&amp;object=9150144196913195288" target="_blank">P#2</a><input style="width:15px;margin-left:5px;" type="text" value="2" disabled=""></div><div><input style="width:15px;" type="text" value="5" disabled=""><input style="width:30px;margin-left:10px;" type="text" value="16" disabled=""><input style="width:30px;margin-left:5px;" type="text" value="30" disabled=""></div></div><div class="floor cherdak" id="9150144196913195288.cherdak" style="order:1001;"><div class="floor-number">Ч</div><div class="floor-objects" id="9150144196913195288.cherdak.objects"><div class="floor-racks" id="9150144196913195288.cherdak.racks"></div><div class="floor-racks floor-rk" id="9150144196913195288.cherdak.rk"></div><div class="floor-flats " id="9150144196913195288.cherdak.flats"><div class="flat-none">чердак</div></div></div></div><div class="floor tehetag" id="9150144196913195288.tehetag" style="order:1000;"><div class="floor-number">Т</div><div class="floor-objects" id="9150144196913195288.tehetag.objects"><div class="floor-racks" id="9150144196913195288.tehetag.racks"></div><div class="floor-racks floor-rk" id="9150144196913195288.tehetag.rk"></div><div class="floor-flats " id="9150144196913195288.tehetag.flats"><div class="flat-none">тех. этаж</div></div></div></div><div class="floor floor_1" id="9150144196913195288.floor_1" style="order:110;"><div class="floor-number">1</div><div class="floor-objects" id="9150144196913195288.floor_1.objects"><div class="floor-racks" id="9150144196913195288.floor_1.racks"></div><div class="floor-racks floor-rk" id="9150144196913195288.floor_1.rk"><div class="rack type-CU" id="9158921420713232836" style="order:10;"><div class="rack-head"><div class="rack-title" id="9158921420713232836_title"><a href="https://nioss/ncobject.jsp?id=9158921420713232836" target="_blank"><span class="title-norm">CU#10</span><span class="title-short">CU#10</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-10.devices_ne"></div><div class="rack-devices" id="9158921420713232836.devices_pp"></div></div></div><div class="floor-flats floor-neven" id="9150144196913195288.floor_1.flats"><div class="flat on-service tv" id="9150144196913195288.flat_16" style="order:16;"><div id="9150144196913195288.flat_16.number"><a href="http://inetcore.mts.ru/#/6-090-0073361" target="_blank">16</a></div><div class="flat-service" id="9150144196913195288.flat_16.spd">шпд</div><div class="flat-service red" id="9150144196913195288.flat_16.tv">тв</div></div><div class="flat on-service inet tv" id="9150144196913195288.flat_17" style="order:17;"><div id="9150144196913195288.flat_17.number"><a href="http://inetcore.mts.ru/#/6-091-0181020" target="_blank">17</a></div><div class="flat-service red" id="9150144196913195288.flat_17.spd">шпд</div><div class="flat-service red" id="9150144196913195288.flat_17.tv">тв</div></div><div class="flat" id="9150144196913195288.flat_18" style="order:18;"><div id="9150144196913195288.flat_18.number">18</div><div class="flat-service" id="9150144196913195288.flat_18.spd">шпд</div><div class="flat-service" id="9150144196913195288.flat_18.tv">тв</div></div></div></div></div><div class="floor floor_2" id="9150144196913195288.floor_2" style="order:120;"><div class="floor-number">2</div><div class="floor-objects" id="9150144196913195288.floor_2.objects"><div class="floor-racks" id="9150144196913195288.floor_2.racks"></div><div class="floor-racks floor-rk" id="9150144196913195288.floor_2.rk"><div class="rack type-CU" id="9158921426513232836" style="order:2;"><div class="rack-head"><div class="rack-title" id="9158921426513232836_title"><a href="https://nioss/ncobject.jsp?id=9158921426513232836" target="_blank"><span class="title-norm">CU#2</span><span class="title-short">CU#2</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-2.devices_ne"></div><div class="rack-devices" id="9158921426513232836.devices_pp"></div></div></div><div class="floor-flats floor-even" id="9150144196913195288.floor_2.flats"><div class="flat on-service tv inet" id="9150144196913195288.flat_19" style="order:19;"><div id="9150144196913195288.flat_19.number"><a href="http://inetcore.mts.ru/#/6-091-0361452" target="_blank">19</a></div><div class="flat-service red" id="9150144196913195288.flat_19.spd">шпд</div><div class="flat-service red" id="9150144196913195288.flat_19.tv">тв</div></div><div class="flat on-service inet" id="9150144196913195288.flat_20" style="order:20;"><div id="9150144196913195288.flat_20.number"><a href="http://inetcore.mts.ru/#/6-091-0459103" target="_blank">20</a></div><div class="flat-service green" id="9150144196913195288.flat_20.spd">шпд</div><div class="flat-service" id="9150144196913195288.flat_20.tv">тв</div></div><div class="flat on-service tv inet" id="9150144196913195288.flat_21" style="order:21;"><div id="9150144196913195288.flat_21.number"><a href="http://inetcore.mts.ru/#/6-090-0200207" target="_blank">21</a></div><div class="flat-service green" id="9150144196913195288.flat_21.spd">шпд</div><div class="flat-service green red" id="9150144196913195288.flat_21.tv">тв</div></div></div></div></div><div class="floor floor_3" id="9150144196913195288.floor_3" style="order:130;"><div class="floor-number">3</div><div class="floor-objects" id="9150144196913195288.floor_3.objects"><div class="floor-racks" id="9150144196913195288.floor_3.racks"></div><div class="floor-racks floor-rk" id="9150144196913195288.floor_3.rk"><div class="rack type-CU" id="9158921420913232836" style="order:18;"><div class="rack-head"><div class="rack-title" id="9158921420913232836_title"><a href="https://nioss/ncobject.jsp?id=9158921420913232836" target="_blank"><span class="title-norm">CU#18</span><span class="title-short">CU#18</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-18.devices_ne"></div><div class="rack-devices" id="9158921420913232836.devices_pp"></div></div></div><div class="floor-flats floor-neven" id="9150144196913195288.floor_3.flats"><div class="flat" id="9150144196913195288.flat_22" style="order:22;"><div id="9150144196913195288.flat_22.number">22</div><div class="flat-service" id="9150144196913195288.flat_22.spd">шпд</div><div class="flat-service" id="9150144196913195288.flat_22.tv">тв</div></div><div class="flat" id="9150144196913195288.flat_23" style="order:23;"><div id="9150144196913195288.flat_23.number">23</div><div class="flat-service" id="9150144196913195288.flat_23.spd">шпд</div><div class="flat-service" id="9150144196913195288.flat_23.tv">тв</div></div><div class="flat" id="9150144196913195288.flat_24" style="order:24;"><div id="9150144196913195288.flat_24.number">24</div><div class="flat-service" id="9150144196913195288.flat_24.spd">шпд</div><div class="flat-service" id="9150144196913195288.flat_24.tv">тв</div></div></div></div></div><div class="floor floor_4" id="9150144196913195288.floor_4" style="order:140;"><div class="floor-number">4</div><div class="floor-objects" id="9150144196913195288.floor_4.objects"><div class="floor-racks" id="9150144196913195288.floor_4.racks"></div><div class="floor-racks floor-rk" id="9150144196913195288.floor_4.rk"><div class="rack type-CU" id="9158921421613232836" style="order:4;"><div class="rack-head"><div class="rack-title" id="9158921421613232836_title"><a href="https://nioss/ncobject.jsp?id=9158921421613232836" target="_blank"><span class="title-norm">CU#4</span><span class="title-short">CU#4</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-4.devices_ne"></div><div class="rack-devices" id="9158921421613232836.devices_pp"></div></div></div><div class="floor-flats floor-even" id="9150144196913195288.floor_4.flats"><div class="flat" id="9150144196913195288.flat_25" style="order:25;"><div id="9150144196913195288.flat_25.number">25</div><div class="flat-service" id="9150144196913195288.flat_25.spd">шпд</div><div class="flat-service" id="9150144196913195288.flat_25.tv">тв</div></div><div class="flat on-service tv" id="9150144196913195288.flat_26" style="order:26;"><div id="9150144196913195288.flat_26.number"><a href="http://inetcore.mts.ru/#/6-090-0032297" target="_blank">26</a></div><div class="flat-service" id="9150144196913195288.flat_26.spd">шпд</div><div class="flat-service green" id="9150144196913195288.flat_26.tv">тв</div></div><div class="flat" id="9150144196913195288.flat_27" style="order:27;"><div id="9150144196913195288.flat_27.number">27</div><div class="flat-service" id="9150144196913195288.flat_27.spd">шпд</div><div class="flat-service" id="9150144196913195288.flat_27.tv">тв</div></div></div></div></div><div class="floor floor_5" id="9150144196913195288.floor_5" style="order:150;"><div class="floor-number">5</div><div class="floor-objects" id="9150144196913195288.floor_5.objects"><div class="floor-racks" id="9150144196913195288.floor_5.racks"><div class="rack type-L" id="9158921307013184345" style="order:2;"><div class="rack-head"><div class="rack-title" id="9158921307013184345_title"><a href="https://nioss/ncobject.jsp?id=9158921307013184345" target="_blank"><span class="title-norm">L#2</span><span class="title-short">L#2</span></a></div></div><div class="rack-devices" id="L_54КР-00100-2.devices_ne"><div class="device type-A" id="A_54КР-00100_01"><div class="device-head"><div class="device-title" id="A_54КР-00100_01_title"><a href="https://nioss/ncobject.jsp?id=9158921242113160807" target="_blank"><span class="title-norm">A#01</span><span class="title-short">A#01</span></a></div><div class="device-led" id="A_54КР-00100_01.led"></div></div></div></div><div class="rack-devices" id="9158921307013184345.devices_pp"><div class="device type-PP" id="PP_54КР-00100_7"><div class="device-head"><div class="device-title" id="PP_54КР-00100_7_title"><a href="https://nioss/ncobject.jsp?id=9158921466613248118" target="_blank"><span class="title-norm">PP#7</span><span class="title-short">PP#7</span></a></div></div></div></div></div></div><div class="floor-racks floor-rk" id="9150144196913195288.floor_5.rk"></div><div class="floor-flats floor-neven" id="9150144196913195288.floor_5.flats"><div class="flat on-service tv" id="9150144196913195288.flat_28" style="order:28;"><div id="9150144196913195288.flat_28.number"><a href="http://inetcore.mts.ru/#/6-090-0029912" target="_blank">28</a></div><div class="flat-service" id="9150144196913195288.flat_28.spd">шпд</div><div class="flat-service red" id="9150144196913195288.flat_28.tv">тв</div></div><div class="flat" id="9150144196913195288.flat_29" style="order:29;"><div id="9150144196913195288.flat_29.number">29</div><div class="flat-service" id="9150144196913195288.flat_29.spd">шпд</div><div class="flat-service" id="9150144196913195288.flat_29.tv">тв</div></div><div class="flat" id="9150144196913195288.flat_30" style="order:30;"><div id="9150144196913195288.flat_30.number">30</div><div class="flat-service" id="9150144196913195288.flat_30.spd">шпд</div><div class="flat-service" id="9150144196913195288.flat_30.tv">тв</div></div></div></div></div></div><div class="floors-under" id="9150144196913195288.under" style="grid-column:3/4;grid-row:3/4;"><div class="floor podval" id="9150144196913195288.podval" style="order:1000;"><div class="floor-number">П</div><div class="floor-objects" id="9150144196913195288.podval.objects"><div class="floor-racks" id="9150144196913195288.podval.racks"></div><div class="floor-racks floor-rk" id="9150144196913195288.podval.rk"></div><div class="floor-flats " id="9150144196913195288.podval.flats"><div class="flat-none">подвал</div></div></div></div><div class="floor floor_0" id="9150144196913195288.floor_0" style="order:100;"><div class="floor-number">0</div><div class="floor-objects" id="9150144196913195288.floor_0.objects"><div class="floor-racks" id="9150144196913195288.floor_0.racks"></div><div class="floor-racks floor-rk" id="9150144196913195288.floor_0.rk"></div><div class="floor-flats floor-even" id="9150144196913195288.floor_0.flats"><div class="flat-none"></div></div></div></div></div><div class="floors-over" id="9150039437013347867.over" style="grid-column:4/5;grid-row:2/3;"><div class="entrance-head" style="order:9999;"><div class="entrance-title" id="9150039437013347867_title" title="P_54КР-00100_3 Sites_and_Devices"><a href="https://nioss/common/uobject.jsp?tab=_Sites+and+Devices&amp;object=9150039437013347867" target="_blank">P#3</a><input style="width:15px;margin-left:5px;" type="text" value="3" disabled=""></div><div><input style="width:15px;" type="text" value="5" disabled=""><input style="width:30px;margin-left:10px;" type="text" value="31" disabled=""><input style="width:30px;margin-left:5px;" type="text" value="45" disabled=""></div></div><div class="floor cherdak" id="9150039437013347867.cherdak" style="order:1001;"><div class="floor-number">Ч</div><div class="floor-objects" id="9150039437013347867.cherdak.objects"><div class="floor-racks" id="9150039437013347867.cherdak.racks"></div><div class="floor-racks floor-rk" id="9150039437013347867.cherdak.rk"></div><div class="floor-flats " id="9150039437013347867.cherdak.flats"><div class="flat-none">чердак</div></div></div></div><div class="floor tehetag" id="9150039437013347867.tehetag" style="order:1000;"><div class="floor-number">Т</div><div class="floor-objects" id="9150039437013347867.tehetag.objects"><div class="floor-racks" id="9150039437013347867.tehetag.racks"></div><div class="floor-racks floor-rk" id="9150039437013347867.tehetag.rk"></div><div class="floor-flats " id="9150039437013347867.tehetag.flats"><div class="flat-none">тех. этаж</div></div></div></div><div class="floor floor_1" id="9150039437013347867.floor_1" style="order:110;"><div class="floor-number">1</div><div class="floor-objects" id="9150039437013347867.floor_1.objects"><div class="floor-racks" id="9150039437013347867.floor_1.racks"></div><div class="floor-racks floor-rk" id="9150039437013347867.floor_1.rk"><div class="rack type-CU" id="9158921421013232936" style="order:20;"><div class="rack-head"><div class="rack-title" id="9158921421013232936_title"><a href="https://nioss/ncobject.jsp?id=9158921421013232936" target="_blank"><span class="title-norm">CU#20</span><span class="title-short">CU#20</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-20.devices_ne"></div><div class="rack-devices" id="9158921421013232936.devices_pp"></div></div></div><div class="floor-flats floor-neven" id="9150039437013347867.floor_1.flats"><div class="flat" id="9150039437013347867.flat_31" style="order:31;"><div id="9150039437013347867.flat_31.number">31</div><div class="flat-service" id="9150039437013347867.flat_31.spd">шпд</div><div class="flat-service" id="9150039437013347867.flat_31.tv">тв</div></div><div class="flat" id="9150039437013347867.flat_32" style="order:32;"><div id="9150039437013347867.flat_32.number">32</div><div class="flat-service" id="9150039437013347867.flat_32.spd">шпд</div><div class="flat-service" id="9150039437013347867.flat_32.tv">тв</div></div><div class="flat" id="9150039437013347867.flat_33" style="order:33;"><div id="9150039437013347867.flat_33.number">33</div><div class="flat-service" id="9150039437013347867.flat_33.spd">шпд</div><div class="flat-service" id="9150039437013347867.flat_33.tv">тв</div></div></div></div></div><div class="floor floor_2" id="9150039437013347867.floor_2" style="order:120;"><div class="floor-number">2</div><div class="floor-objects" id="9150039437013347867.floor_2.objects"><div class="floor-racks" id="9150039437013347867.floor_2.racks"></div><div class="floor-racks floor-rk" id="9150039437013347867.floor_2.rk"><div class="rack type-CU" id="9158921429613232836" style="order:9;"><div class="rack-head"><div class="rack-title" id="9158921429613232836_title"><a href="https://nioss/ncobject.jsp?id=9158921429613232836" target="_blank"><span class="title-norm">CU#9</span><span class="title-short">CU#9</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-9.devices_ne"></div><div class="rack-devices" id="9158921429613232836.devices_pp"></div></div></div><div class="floor-flats floor-even" id="9150039437013347867.floor_2.flats"><div class="flat on-service tv" id="9150039437013347867.flat_34" style="order:34;"><div id="9150039437013347867.flat_34.number"><a href="http://inetcore.mts.ru/#/6-090-0023544" target="_blank">34</a></div><div class="flat-service" id="9150039437013347867.flat_34.spd">шпд</div><div class="flat-service red" id="9150039437013347867.flat_34.tv">тв</div></div><div class="flat" id="9150039437013347867.flat_35" style="order:35;"><div id="9150039437013347867.flat_35.number">35</div><div class="flat-service" id="9150039437013347867.flat_35.spd">шпд</div><div class="flat-service" id="9150039437013347867.flat_35.tv">тв</div></div><div class="flat on-service tv" id="9150039437013347867.flat_36" style="order:36;"><div id="9150039437013347867.flat_36.number"><a href="http://inetcore.mts.ru/#/6-090-0023549" target="_blank">36</a></div><div class="flat-service" id="9150039437013347867.flat_36.spd">шпд</div><div class="flat-service green" id="9150039437013347867.flat_36.tv">тв</div></div></div></div></div><div class="floor floor_3" id="9150039437013347867.floor_3" style="order:130;"><div class="floor-number">3</div><div class="floor-objects" id="9150039437013347867.floor_3.objects"><div class="floor-racks" id="9150039437013347867.floor_3.racks"></div><div class="floor-racks floor-rk" id="9150039437013347867.floor_3.rk"><div class="rack type-CU" id="9158921420013232936" style="order:19;"><div class="rack-head"><div class="rack-title" id="9158921420013232936_title"><a href="https://nioss/ncobject.jsp?id=9158921420013232936" target="_blank"><span class="title-norm">CU#19</span><span class="title-short">CU#19</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-19.devices_ne"></div><div class="rack-devices" id="9158921420013232936.devices_pp"></div></div></div><div class="floor-flats floor-neven" id="9150039437013347867.floor_3.flats"><div class="flat" id="9150039437013347867.flat_37" style="order:37;"><div id="9150039437013347867.flat_37.number">37</div><div class="flat-service" id="9150039437013347867.flat_37.spd">шпд</div><div class="flat-service" id="9150039437013347867.flat_37.tv">тв</div></div><div class="flat on-service tv" id="9150039437013347867.flat_38" style="order:38;"><div id="9150039437013347867.flat_38.number"><a href="http://inetcore.mts.ru/#/6-090-0071443" target="_blank">38</a></div><div class="flat-service" id="9150039437013347867.flat_38.spd">шпд</div><div class="flat-service red" id="9150039437013347867.flat_38.tv">тв</div></div><div class="flat" id="9150039437013347867.flat_39" style="order:39;"><div id="9150039437013347867.flat_39.number">39</div><div class="flat-service" id="9150039437013347867.flat_39.spd">шпд</div><div class="flat-service" id="9150039437013347867.flat_39.tv">тв</div></div></div></div></div><div class="floor floor_4" id="9150039437013347867.floor_4" style="order:140;"><div class="floor-number">4</div><div class="floor-objects" id="9150039437013347867.floor_4.objects"><div class="floor-racks" id="9150039437013347867.floor_4.racks"></div><div class="floor-racks floor-rk" id="9150039437013347867.floor_4.rk"><div class="rack type-CU" id="9158921429713232836" style="order:13;"><div class="rack-head"><div class="rack-title" id="9158921429713232836_title"><a href="https://nioss/ncobject.jsp?id=9158921429713232836" target="_blank"><span class="title-norm">CU#13</span><span class="title-short">CU#13</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-13.devices_ne"></div><div class="rack-devices" id="9158921429713232836.devices_pp"></div></div></div><div class="floor-flats floor-even" id="9150039437013347867.floor_4.flats"><div class="flat" id="9150039437013347867.flat_40" style="order:40;"><div id="9150039437013347867.flat_40.number">40</div><div class="flat-service" id="9150039437013347867.flat_40.spd">шпд</div><div class="flat-service" id="9150039437013347867.flat_40.tv">тв</div></div><div class="flat on-service tv" id="9150039437013347867.flat_41" style="order:41;"><div id="9150039437013347867.flat_41.number"><a href="http://inetcore.mts.ru/#/6-090-0021808" target="_blank">41</a></div><div class="flat-service" id="9150039437013347867.flat_41.spd">шпд</div><div class="flat-service green" id="9150039437013347867.flat_41.tv">тв</div></div><div class="flat" id="9150039437013347867.flat_42" style="order:42;"><div id="9150039437013347867.flat_42.number">42</div><div class="flat-service" id="9150039437013347867.flat_42.spd">шпд</div><div class="flat-service" id="9150039437013347867.flat_42.tv">тв</div></div></div></div></div><div class="floor floor_5" id="9150039437013347867.floor_5" style="order:150;"><div class="floor-number">5</div><div class="floor-objects" id="9150039437013347867.floor_5.objects"><div class="floor-racks" id="9150039437013347867.floor_5.racks"></div><div class="floor-racks floor-rk" id="9150039437013347867.floor_5.rk"><div class="rack type-CU" id="9158921421813232836" style="order:15;"><div class="rack-head"><div class="rack-title" id="9158921421813232836_title"><a href="https://nioss/ncobject.jsp?id=9158921421813232836" target="_blank"><span class="title-norm">CU#15</span><span class="title-short">CU#15</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-15.devices_ne"></div><div class="rack-devices" id="9158921421813232836.devices_pp"><div class="device type-PP" id="PP_54КР-00100_8"><div class="device-head"><div class="device-title" id="PP_54КР-00100_8_title"><a href="https://nioss/ncobject.jsp?id=9158921460813248218" target="_blank"><span class="title-norm">PP#8</span><span class="title-short">PP#8</span></a></div></div></div></div></div></div><div class="floor-flats floor-neven" id="9150039437013347867.floor_5.flats"><div class="flat on-service tv" id="9150039437013347867.flat_43" style="order:43;"><div id="9150039437013347867.flat_43.number"><a href="http://inetcore.mts.ru/#/6-090-0007239" target="_blank">43</a></div><div class="flat-service" id="9150039437013347867.flat_43.spd">шпд</div><div class="flat-service green" id="9150039437013347867.flat_43.tv">тв</div></div><div class="flat" id="9150039437013347867.flat_44" style="order:44;"><div id="9150039437013347867.flat_44.number">44</div><div class="flat-service" id="9150039437013347867.flat_44.spd">шпд</div><div class="flat-service" id="9150039437013347867.flat_44.tv">тв</div></div><div class="flat on-service inet tv" id="9150039437013347867.flat_45" style="order:45;"><div id="9150039437013347867.flat_45.number"><a href="http://inetcore.mts.ru/#/6-091-0186682" target="_blank">45</a></div><div class="flat-service green" id="9150039437013347867.flat_45.spd">шпд</div><div class="flat-service green" id="9150039437013347867.flat_45.tv">тв</div></div></div></div></div></div><div class="floors-under" id="9150039437013347867.under" style="grid-column:4/5;grid-row:3/4;"><div class="floor podval" id="9150039437013347867.podval" style="order:1000;"><div class="floor-number">П</div><div class="floor-objects" id="9150039437013347867.podval.objects"><div class="floor-racks" id="9150039437013347867.podval.racks"></div><div class="floor-racks floor-rk" id="9150039437013347867.podval.rk"></div><div class="floor-flats " id="9150039437013347867.podval.flats"><div class="flat-none">подвал</div></div></div></div><div class="floor floor_0" id="9150039437013347867.floor_0" style="order:100;"><div class="floor-number">0</div><div class="floor-objects" id="9150039437013347867.floor_0.objects"><div class="floor-racks" id="9150039437013347867.floor_0.racks"></div><div class="floor-racks floor-rk" id="9150039437013347867.floor_0.rk"></div><div class="floor-flats floor-even" id="9150039437013347867.floor_0.flats"><div class="flat-none"></div></div></div></div></div><div class="floors-over" id="9150039437013347882.over" style="grid-column:5/6;grid-row:2/3;"><div class="entrance-head" style="order:9999;"><div class="entrance-title" id="9150039437013347882_title" title="P_54КР-00100_4 Sites_and_Devices"><a href="https://nioss/common/uobject.jsp?tab=_Sites+and+Devices&amp;object=9150039437013347882" target="_blank">P#4</a><input style="width:15px;margin-left:5px;" type="text" value="4" disabled=""></div><div><input style="width:15px;" type="text" value="5" disabled=""><input style="width:30px;margin-left:10px;" type="text" value="46" disabled=""><input style="width:30px;margin-left:5px;" type="text" value="60" disabled=""></div></div><div class="floor cherdak" id="9150039437013347882.cherdak" style="order:1001;"><div class="floor-number">Ч</div><div class="floor-objects" id="9150039437013347882.cherdak.objects"><div class="floor-racks" id="9150039437013347882.cherdak.racks"></div><div class="floor-racks floor-rk" id="9150039437013347882.cherdak.rk"></div><div class="floor-flats " id="9150039437013347882.cherdak.flats"><div class="flat-none">чердак</div></div></div></div><div class="floor tehetag" id="9150039437013347882.tehetag" style="order:1000;"><div class="floor-number">Т</div><div class="floor-objects" id="9150039437013347882.tehetag.objects"><div class="floor-racks" id="9150039437013347882.tehetag.racks"></div><div class="floor-racks floor-rk" id="9150039437013347882.tehetag.rk"></div><div class="floor-flats " id="9150039437013347882.tehetag.flats"><div class="flat-none">тех. этаж</div></div></div></div><div class="floor floor_1" id="9150039437013347882.floor_1" style="order:110;"><div class="floor-number">1</div><div class="floor-objects" id="9150039437013347882.floor_1.objects"><div class="floor-racks" id="9150039437013347882.floor_1.racks"></div><div class="floor-racks floor-rk" id="9150039437013347882.floor_1.rk"><div class="rack type-CU" id="9158921422813232836" style="order:16;"><div class="rack-head"><div class="rack-title" id="9158921422813232836_title"><a href="https://nioss/ncobject.jsp?id=9158921422813232836" target="_blank"><span class="title-norm">CU#16</span><span class="title-short">CU#16</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-16.devices_ne"></div><div class="rack-devices" id="9158921422813232836.devices_pp"></div></div></div><div class="floor-flats floor-neven" id="9150039437013347882.floor_1.flats"><div class="flat" id="9150039437013347882.flat_46" style="order:46;"><div id="9150039437013347882.flat_46.number">46</div><div class="flat-service" id="9150039437013347882.flat_46.spd">шпд</div><div class="flat-service" id="9150039437013347882.flat_46.tv">тв</div></div><div class="flat on-service tv inet" id="9150039437013347882.flat_47" style="order:47;"><div id="9150039437013347882.flat_47.number"><a href="http://inetcore.mts.ru/#/6-091-0439298" target="_blank">47</a></div><div class="flat-service green" id="9150039437013347882.flat_47.spd">шпд</div><div class="flat-service red green" id="9150039437013347882.flat_47.tv">тв</div></div><div class="flat" id="9150039437013347882.flat_48" style="order:48;"><div id="9150039437013347882.flat_48.number">48</div><div class="flat-service" id="9150039437013347882.flat_48.spd">шпд</div><div class="flat-service" id="9150039437013347882.flat_48.tv">тв</div></div></div></div></div><div class="floor floor_2" id="9150039437013347882.floor_2" style="order:120;"><div class="floor-number">2</div><div class="floor-objects" id="9150039437013347882.floor_2.objects"><div class="floor-racks" id="9150039437013347882.floor_2.racks"></div><div class="floor-racks floor-rk" id="9150039437013347882.floor_2.rk"><div class="rack type-CU" id="9158921420113232936" style="order:23;"><div class="rack-head"><div class="rack-title" id="9158921420113232936_title"><a href="https://nioss/ncobject.jsp?id=9158921420113232936" target="_blank"><span class="title-norm">CU#23</span><span class="title-short">CU#23</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-23.devices_ne"></div><div class="rack-devices" id="9158921420113232936.devices_pp"></div></div></div><div class="floor-flats floor-even" id="9150039437013347882.floor_2.flats"><div class="flat on-service tv" id="9150039437013347882.flat_49" style="order:49;"><div id="9150039437013347882.flat_49.number"><a href="http://inetcore.mts.ru/#/6-090-0200313" target="_blank">49</a></div><div class="flat-service" id="9150039437013347882.flat_49.spd">шпд</div><div class="flat-service green" id="9150039437013347882.flat_49.tv">тв</div></div><div class="flat" id="9150039437013347882.flat_50" style="order:50;"><div id="9150039437013347882.flat_50.number">50</div><div class="flat-service" id="9150039437013347882.flat_50.spd">шпд</div><div class="flat-service" id="9150039437013347882.flat_50.tv">тв</div></div><div class="flat on-service tv inet" id="9150039437013347882.flat_51" style="order:51;"><div id="9150039437013347882.flat_51.number"><a href="http://inetcore.mts.ru/#/6-091-0193260" target="_blank">51</a></div><div class="flat-service green" id="9150039437013347882.flat_51.spd">шпд</div><div class="flat-service green" id="9150039437013347882.flat_51.tv">тв</div></div></div></div></div><div class="floor floor_3" id="9150039437013347882.floor_3" style="order:130;"><div class="floor-number">3</div><div class="floor-objects" id="9150039437013347882.floor_3.objects"><div class="floor-racks" id="9150039437013347882.floor_3.racks"></div><div class="floor-racks floor-rk" id="9150039437013347882.floor_3.rk"><div class="rack type-CU" id="9158921427513232836" style="order:3;"><div class="rack-head"><div class="rack-title" id="9158921427513232836_title"><a href="https://nioss/ncobject.jsp?id=9158921427513232836" target="_blank"><span class="title-norm">CU#3</span><span class="title-short">CU#3</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-3.devices_ne"></div><div class="rack-devices" id="9158921427513232836.devices_pp"></div></div></div><div class="floor-flats floor-neven" id="9150039437013347882.floor_3.flats"><div class="flat on-service tv inet" id="9150039437013347882.flat_52" style="order:52;"><div id="9150039437013347882.flat_52.number"><a href="http://inetcore.mts.ru/#/6-090-0003851" target="_blank">52</a></div><div class="flat-service green" id="9150039437013347882.flat_52.spd">шпд</div><div class="flat-service green" id="9150039437013347882.flat_52.tv">тв</div></div><div class="flat" id="9150039437013347882.flat_53" style="order:53;"><div id="9150039437013347882.flat_53.number">53</div><div class="flat-service" id="9150039437013347882.flat_53.spd">шпд</div><div class="flat-service" id="9150039437013347882.flat_53.tv">тв</div></div><div class="flat" id="9150039437013347882.flat_54" style="order:54;"><div id="9150039437013347882.flat_54.number">54</div><div class="flat-service" id="9150039437013347882.flat_54.spd">шпд</div><div class="flat-service" id="9150039437013347882.flat_54.tv">тв</div></div></div></div></div><div class="floor floor_4" id="9150039437013347882.floor_4" style="order:140;"><div class="floor-number">4</div><div class="floor-objects" id="9150039437013347882.floor_4.objects"><div class="floor-racks" id="9150039437013347882.floor_4.racks"></div><div class="floor-racks floor-rk" id="9150039437013347882.floor_4.rk"><div class="rack type-CU" id="9158921427613232836" style="order:7;"><div class="rack-head"><div class="rack-title" id="9158921427613232836_title"><a href="https://nioss/ncobject.jsp?id=9158921427613232836" target="_blank"><span class="title-norm">CU#7</span><span class="title-short">CU#7</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-7.devices_ne"></div><div class="rack-devices" id="9158921427613232836.devices_pp"></div></div></div><div class="floor-flats floor-even" id="9150039437013347882.floor_4.flats"><div class="flat on-service tv" id="9150039437013347882.flat_55" style="order:55;"><div id="9150039437013347882.flat_55.number"><a href="http://inetcore.mts.ru/#/6-090-0200642" target="_blank">55</a></div><div class="flat-service" id="9150039437013347882.flat_55.spd">шпд</div><div class="flat-service red" id="9150039437013347882.flat_55.tv">тв</div></div><div class="flat on-service inet" id="9150039437013347882.flat_56" style="order:56;"><div id="9150039437013347882.flat_56.number"><a href="http://inetcore.mts.ru/#/6-091-0340203" target="_blank">56</a></div><div class="flat-service red" id="9150039437013347882.flat_56.spd">шпд</div><div class="flat-service" id="9150039437013347882.flat_56.tv">тв</div></div><div class="flat" id="9150039437013347882.flat_57" style="order:57;"><div id="9150039437013347882.flat_57.number">57</div><div class="flat-service" id="9150039437013347882.flat_57.spd">шпд</div><div class="flat-service" id="9150039437013347882.flat_57.tv">тв</div></div></div></div></div><div class="floor floor_5" id="9150039437013347882.floor_5" style="order:150;"><div class="floor-number">5</div><div class="floor-objects" id="9150039437013347882.floor_5.objects"><div class="floor-racks" id="9150039437013347882.floor_5.racks"></div><div class="floor-racks floor-rk" id="9150039437013347882.floor_5.rk"><div class="rack type-CU" id="9158921426813232836" style="order:17;"><div class="rack-head"><div class="rack-title" id="9158921426813232836_title"><a href="https://nioss/ncobject.jsp?id=9158921426813232836" target="_blank"><span class="title-norm">CU#17</span><span class="title-short">CU#17</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-17.devices_ne"></div><div class="rack-devices" id="9158921426813232836.devices_pp"><div class="device type-PP" id="PP_54КР-00100_10"><div class="device-head"><div class="device-title" id="PP_54КР-00100_10_title"><a href="https://nioss/ncobject.jsp?id=9158921460213248420" target="_blank"><span class="title-norm">PP#10</span><span class="title-short">PP#10</span></a></div></div></div></div></div></div><div class="floor-flats floor-neven" id="9150039437013347882.floor_5.flats"><div class="flat" id="9150039437013347882.flat_58" style="order:58;"><div id="9150039437013347882.flat_58.number">58</div><div class="flat-service" id="9150039437013347882.flat_58.spd">шпд</div><div class="flat-service" id="9150039437013347882.flat_58.tv">тв</div></div><div class="flat" id="9150039437013347882.flat_59" style="order:59;"><div id="9150039437013347882.flat_59.number">59</div><div class="flat-service" id="9150039437013347882.flat_59.spd">шпд</div><div class="flat-service" id="9150039437013347882.flat_59.tv">тв</div></div><div class="flat" id="9150039437013347882.flat_60" style="order:60;"><div id="9150039437013347882.flat_60.number">60</div><div class="flat-service" id="9150039437013347882.flat_60.spd">шпд</div><div class="flat-service" id="9150039437013347882.flat_60.tv">тв</div></div></div></div></div></div><div class="floors-under" id="9150039437013347882.under" style="grid-column:5/6;grid-row:3/4;"><div class="floor podval" id="9150039437013347882.podval" style="order:1000;"><div class="floor-number">П</div><div class="floor-objects" id="9150039437013347882.podval.objects"><div class="floor-racks" id="9150039437013347882.podval.racks"></div><div class="floor-racks floor-rk" id="9150039437013347882.podval.rk"></div><div class="floor-flats " id="9150039437013347882.podval.flats"><div class="flat-none">подвал</div></div></div></div><div class="floor floor_0" id="9150039437013347882.floor_0" style="order:100;"><div class="floor-number">0</div><div class="floor-objects" id="9150039437013347882.floor_0.objects"><div class="floor-racks" id="9150039437013347882.floor_0.racks"></div><div class="floor-racks floor-rk" id="9150039437013347882.floor_0.rk"></div><div class="floor-flats floor-even" id="9150039437013347882.floor_0.flats"><div class="flat-none"></div></div></div></div></div><div class="floors-over" id="9150039437013347880.over" style="grid-column:6/7;grid-row:2/3;"><div class="entrance-head" style="order:9999;"><div class="entrance-title" id="9150039437013347880_title" title="P_54КР-00100_5 Sites_and_Devices"><a href="https://nioss/common/uobject.jsp?tab=_Sites+and+Devices&amp;object=9150039437013347880" target="_blank">P#5</a><input style="width:15px;margin-left:5px;" type="text" value="5" disabled=""></div><div><input style="width:15px;" type="text" value="5" disabled=""><input style="width:30px;margin-left:10px;" type="text" value="61" disabled=""><input style="width:30px;margin-left:5px;" type="text" value="75" disabled=""></div></div><div class="floor cherdak" id="9150039437013347880.cherdak" style="order:1001;"><div class="floor-number">Ч</div><div class="floor-objects" id="9150039437013347880.cherdak.objects"><div class="floor-racks" id="9150039437013347880.cherdak.racks"></div><div class="floor-racks floor-rk" id="9150039437013347880.cherdak.rk"></div><div class="floor-flats " id="9150039437013347880.cherdak.flats"><div class="flat-none">чердак</div></div></div></div><div class="floor tehetag" id="9150039437013347880.tehetag" style="order:1000;"><div class="floor-number">Т</div><div class="floor-objects" id="9150039437013347880.tehetag.objects"><div class="floor-racks" id="9150039437013347880.tehetag.racks"></div><div class="floor-racks floor-rk" id="9150039437013347880.tehetag.rk"></div><div class="floor-flats " id="9150039437013347880.tehetag.flats"><div class="flat-none">тех. этаж</div></div></div></div><div class="floor floor_1" id="9150039437013347880.floor_1" style="order:110;"><div class="floor-number">1</div><div class="floor-objects" id="9150039437013347880.floor_1.objects"><div class="floor-racks" id="9150039437013347880.floor_1.racks"></div><div class="floor-racks floor-rk" id="9150039437013347880.floor_1.rk"><div class="rack type-CU" id="9158921420813232836" style="order:14;"><div class="rack-head"><div class="rack-title" id="9158921420813232836_title"><a href="https://nioss/ncobject.jsp?id=9158921420813232836" target="_blank"><span class="title-norm">CU#14</span><span class="title-short">CU#14</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-14.devices_ne"></div><div class="rack-devices" id="9158921420813232836.devices_pp"></div></div></div><div class="floor-flats floor-neven" id="9150039437013347880.floor_1.flats"><div class="flat on-service inet" id="9150039437013347880.flat_61" style="order:61;"><div id="9150039437013347880.flat_61.number"><a href="http://inetcore.mts.ru/#/6-091-0465935" target="_blank">61</a></div><div class="flat-service green" id="9150039437013347880.flat_61.spd">шпд</div><div class="flat-service" id="9150039437013347880.flat_61.tv">тв</div></div><div class="flat" id="9150039437013347880.flat_62" style="order:62;"><div id="9150039437013347880.flat_62.number">62</div><div class="flat-service" id="9150039437013347880.flat_62.spd">шпд</div><div class="flat-service" id="9150039437013347880.flat_62.tv">тв</div></div><div class="flat" id="9150039437013347880.flat_63" style="order:63;"><div id="9150039437013347880.flat_63.number">63</div><div class="flat-service" id="9150039437013347880.flat_63.spd">шпд</div><div class="flat-service" id="9150039437013347880.flat_63.tv">тв</div></div></div></div></div><div class="floor floor_2" id="9150039437013347880.floor_2" style="order:120;"><div class="floor-number">2</div><div class="floor-objects" id="9150039437013347880.floor_2.objects"><div class="floor-racks" id="9150039437013347880.floor_2.racks"></div><div class="floor-racks floor-rk" id="9150039437013347880.floor_2.rk"><div class="rack type-CU" id="9158921428713232836" style="order:12;"><div class="rack-head"><div class="rack-title" id="9158921428713232836_title"><a href="https://nioss/ncobject.jsp?id=9158921428713232836" target="_blank"><span class="title-norm">CU#12</span><span class="title-short">CU#12</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-12.devices_ne"></div><div class="rack-devices" id="9158921428713232836.devices_pp"></div></div></div><div class="floor-flats floor-even" id="9150039437013347880.floor_2.flats"><div class="flat" id="9150039437013347880.flat_64" style="order:64;"><div id="9150039437013347880.flat_64.number">64</div><div class="flat-service" id="9150039437013347880.flat_64.spd">шпд</div><div class="flat-service" id="9150039437013347880.flat_64.tv">тв</div></div><div class="flat" id="9150039437013347880.flat_65" style="order:65;"><div id="9150039437013347880.flat_65.number">65</div><div class="flat-service" id="9150039437013347880.flat_65.spd">шпд</div><div class="flat-service" id="9150039437013347880.flat_65.tv">тв</div></div><div class="flat on-service tv" id="9150039437013347880.flat_66" style="order:66;"><div id="9150039437013347880.flat_66.number"><a href="http://inetcore.mts.ru/#/6-090-0014542" target="_blank">66</a></div><div class="flat-service" id="9150039437013347880.flat_66.spd">шпд</div><div class="flat-service green" id="9150039437013347880.flat_66.tv">тв</div></div></div></div></div><div class="floor floor_3" id="9150039437013347880.floor_3" style="order:130;"><div class="floor-number">3</div><div class="floor-objects" id="9150039437013347880.floor_3.objects"><div class="floor-racks" id="9150039437013347880.floor_3.racks"></div><div class="floor-racks floor-rk" id="9150039437013347880.floor_3.rk"><div class="rack type-CU" id="9158921428113232936" style="order:25;"><div class="rack-head"><div class="rack-title" id="9158921428113232936_title"><a href="https://nioss/ncobject.jsp?id=9158921428113232936" target="_blank"><span class="title-norm">CU#25</span><span class="title-short">CU#25</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-25.devices_ne"></div><div class="rack-devices" id="9158921428113232936.devices_pp"></div></div></div><div class="floor-flats floor-neven" id="9150039437013347880.floor_3.flats"><div class="flat" id="9150039437013347880.flat_67" style="order:67;"><div id="9150039437013347880.flat_67.number">67</div><div class="flat-service" id="9150039437013347880.flat_67.spd">шпд</div><div class="flat-service" id="9150039437013347880.flat_67.tv">тв</div></div><div class="flat" id="9150039437013347880.flat_68" style="order:68;"><div id="9150039437013347880.flat_68.number">68</div><div class="flat-service" id="9150039437013347880.flat_68.spd">шпд</div><div class="flat-service" id="9150039437013347880.flat_68.tv">тв</div></div><div class="flat" id="9150039437013347880.flat_69" style="order:69;"><div id="9150039437013347880.flat_69.number">69</div><div class="flat-service" id="9150039437013347880.flat_69.spd">шпд</div><div class="flat-service" id="9150039437013347880.flat_69.tv">тв</div></div></div></div></div><div class="floor floor_4" id="9150039437013347880.floor_4" style="order:140;"><div class="floor-number">4</div><div class="floor-objects" id="9150039437013347880.floor_4.objects"><div class="floor-racks" id="9150039437013347880.floor_4.racks"></div><div class="floor-racks floor-rk" id="9150039437013347880.floor_4.rk"><div class="rack type-CU" id="9158921423613232836" style="order:6;"><div class="rack-head"><div class="rack-title" id="9158921423613232836_title"><a href="https://nioss/ncobject.jsp?id=9158921423613232836" target="_blank"><span class="title-norm">CU#6</span><span class="title-short">CU#6</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-6.devices_ne"></div><div class="rack-devices" id="9158921423613232836.devices_pp"></div></div></div><div class="floor-flats floor-even" id="9150039437013347880.floor_4.flats"><div class="flat" id="9150039437013347880.flat_70" style="order:70;"><div id="9150039437013347880.flat_70.number">70</div><div class="flat-service" id="9150039437013347880.flat_70.spd">шпд</div><div class="flat-service" id="9150039437013347880.flat_70.tv">тв</div></div><div class="flat" id="9150039437013347880.flat_71" style="order:71;"><div id="9150039437013347880.flat_71.number">71</div><div class="flat-service" id="9150039437013347880.flat_71.spd">шпд</div><div class="flat-service" id="9150039437013347880.flat_71.tv">тв</div></div><div class="flat on-service tv" id="9150039437013347880.flat_72" style="order:72;"><div id="9150039437013347880.flat_72.number"><a href="http://inetcore.mts.ru/#/6-090-0200728" target="_blank">72</a></div><div class="flat-service" id="9150039437013347880.flat_72.spd">шпд</div><div class="flat-service red" id="9150039437013347880.flat_72.tv">тв</div></div></div></div></div><div class="floor floor_5" id="9150039437013347880.floor_5" style="order:150;"><div class="floor-number">5</div><div class="floor-objects" id="9150039437013347880.floor_5.objects"><div class="floor-racks" id="9150039437013347880.floor_5.racks"><div class="rack type-L" id="9158921301413185070" style="order:3;"><div class="rack-head"><div class="rack-title" id="9158921301413185070_title"><a href="https://nioss/ncobject.jsp?id=9158921301413185070" target="_blank"><span class="title-norm">L#3</span><span class="title-short">L#3</span></a></div></div><div class="rack-devices" id="L_54КР-00100-3.devices_ne"><div class="device type-A" id="A_54КР-00100_02"><div class="device-head"><div class="device-title" id="A_54КР-00100_02_title"><a href="https://nioss/ncobject.jsp?id=9158921307813182509" target="_blank"><span class="title-norm">A#02</span><span class="title-short">A#02</span></a></div><div class="device-led" id="A_54КР-00100_02.led"></div></div></div><div class="device type-ETH" id="ETH_54КР_00100_2"><div class="device-head"><div class="device-title" id="ETH_54КР_00100_2_title"><a href="https://nioss/ncobject.jsp?id=9158921580313295929" target="_blank"><span class="title-norm">ETH#2&nbsp;..160.132</span><span class="title-short">ETH#2</span></a></div><div class="device-led online" id="ETH_54КР_00100_2.led"></div></div></div></div><div class="rack-devices" id="9158921301413185070.devices_pp"><div class="device type-PP" id="PP_54КР-00100_5"><div class="device-head"><div class="device-title" id="PP_54КР-00100_5_title"><a href="https://nioss/ncobject.jsp?id=9158921464113248116" target="_blank"><span class="title-norm">PP#5</span><span class="title-short">PP#5</span></a></div></div></div><div class="device type-PP" id="PP_54КР-00100_4"><div class="device-head"><div class="device-title" id="PP_54КР-00100_4_title"><a href="https://nioss/ncobject.jsp?id=9158921468813248015" target="_blank"><span class="title-norm">PP#4</span><span class="title-short">PP#4</span></a></div></div></div></div></div></div><div class="floor-racks floor-rk" id="9150039437013347880.floor_5.rk"><div class="device type-PP without" id="PP_54КР-00100_2"><div class="device-head"><div class="device-title" id="PP_54КР-00100_2_title"><a href="https://nioss/ncobject.jsp?id=9158921460613247913" target="_blank"><span class="title-norm">PP#2</span><span class="title-short">PP#2</span></a></div></div></div></div><div class="floor-flats floor-neven" id="9150039437013347880.floor_5.flats"><div class="flat on-service inet" id="9150039437013347880.flat_73" style="order:73;"><div id="9150039437013347880.flat_73.number"><a href="http://inetcore.mts.ru/#/6-091-0439036" target="_blank">73</a></div><div class="flat-service red" id="9150039437013347880.flat_73.spd">шпд</div><div class="flat-service" id="9150039437013347880.flat_73.tv">тв</div></div><div class="flat on-service tv" id="9150039437013347880.flat_74" style="order:74;"><div id="9150039437013347880.flat_74.number"><a href="http://inetcore.mts.ru/#/6-090-0030847" target="_blank">74</a></div><div class="flat-service" id="9150039437013347880.flat_74.spd">шпд</div><div class="flat-service green" id="9150039437013347880.flat_74.tv">тв</div></div><div class="flat" id="9150039437013347880.flat_75" style="order:75;"><div id="9150039437013347880.flat_75.number">75</div><div class="flat-service" id="9150039437013347880.flat_75.spd">шпд</div><div class="flat-service" id="9150039437013347880.flat_75.tv">тв</div></div></div></div></div></div><div class="floors-under" id="9150039437013347880.under" style="grid-column:6/7;grid-row:3/4;"><div class="floor podval" id="9150039437013347880.podval" style="order:1000;"><div class="floor-number">П</div><div class="floor-objects" id="9150039437013347880.podval.objects"><div class="floor-racks" id="9150039437013347880.podval.racks"></div><div class="floor-racks floor-rk" id="9150039437013347880.podval.rk"></div><div class="floor-flats " id="9150039437013347880.podval.flats"><div class="flat-none">подвал</div></div></div></div><div class="floor floor_0" id="9150039437013347880.floor_0" style="order:100;"><div class="floor-number">0</div><div class="floor-objects" id="9150039437013347880.floor_0.objects"><div class="floor-racks" id="9150039437013347880.floor_0.racks"></div><div class="floor-racks floor-rk" id="9150039437013347880.floor_0.rk"></div><div class="floor-flats floor-even" id="9150039437013347880.floor_0.flats"><div class="flat-none"></div></div></div></div></div><div class="floors-over" id="9150039437013347877.over" style="grid-column:7/8;grid-row:2/3;"><div class="entrance-head" style="order:9999;"><div class="entrance-title" id="9150039437013347877_title" title="P_54КР-00100_6 Sites_and_Devices"><a href="https://nioss/common/uobject.jsp?tab=_Sites+and+Devices&amp;object=9150039437013347877" target="_blank">P#6</a><input style="width:15px;margin-left:5px;" type="text" value="6" disabled=""></div><div><input style="width:15px;" type="text" value="5" disabled=""><input style="width:30px;margin-left:10px;" type="text" value="76" disabled=""><input style="width:30px;margin-left:5px;" type="text" value="90" disabled=""></div></div><div class="floor cherdak" id="9150039437013347877.cherdak" style="order:1001;"><div class="floor-number">Ч</div><div class="floor-objects" id="9150039437013347877.cherdak.objects"><div class="floor-racks" id="9150039437013347877.cherdak.racks"></div><div class="floor-racks floor-rk" id="9150039437013347877.cherdak.rk"></div><div class="floor-flats " id="9150039437013347877.cherdak.flats"><div class="flat-none">чердак</div></div></div></div><div class="floor tehetag" id="9150039437013347877.tehetag" style="order:1000;"><div class="floor-number">Т</div><div class="floor-objects" id="9150039437013347877.tehetag.objects"><div class="floor-racks" id="9150039437013347877.tehetag.racks"></div><div class="floor-racks floor-rk" id="9150039437013347877.tehetag.rk"></div><div class="floor-flats " id="9150039437013347877.tehetag.flats"><div class="flat-none">тех. этаж</div></div></div></div><div class="floor floor_1" id="9150039437013347877.floor_1" style="order:110;"><div class="floor-number">1</div><div class="floor-objects" id="9150039437013347877.floor_1.objects"><div class="floor-racks" id="9150039437013347877.floor_1.racks"></div><div class="floor-racks floor-rk" id="9150039437013347877.floor_1.rk"><div class="rack type-CU" id="9158921424113232936" style="order:24;"><div class="rack-head"><div class="rack-title" id="9158921424113232936_title"><a href="https://nioss/ncobject.jsp?id=9158921424113232936" target="_blank"><span class="title-norm">CU#24</span><span class="title-short">CU#24</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-24.devices_ne"></div><div class="rack-devices" id="9158921424113232936.devices_pp"></div></div></div><div class="floor-flats floor-neven" id="9150039437013347877.floor_1.flats"><div class="flat" id="9150039437013347877.flat_76" style="order:76;"><div id="9150039437013347877.flat_76.number">76</div><div class="flat-service" id="9150039437013347877.flat_76.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_76.tv">тв</div></div><div class="flat" id="9150039437013347877.flat_77" style="order:77;"><div id="9150039437013347877.flat_77.number">77</div><div class="flat-service" id="9150039437013347877.flat_77.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_77.tv">тв</div></div><div class="flat" id="9150039437013347877.flat_78" style="order:78;"><div id="9150039437013347877.flat_78.number">78</div><div class="flat-service" id="9150039437013347877.flat_78.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_78.tv">тв</div></div></div></div></div><div class="floor floor_2" id="9150039437013347877.floor_2" style="order:120;"><div class="floor-number">2</div><div class="floor-objects" id="9150039437013347877.floor_2.objects"><div class="floor-racks" id="9150039437013347877.floor_2.racks"></div><div class="floor-racks floor-rk" id="9150039437013347877.floor_2.rk"><div class="rack type-CU" id="9158921429013232936" style="order:22;"><div class="rack-head"><div class="rack-title" id="9158921429013232936_title"><a href="https://nioss/ncobject.jsp?id=9158921429013232936" target="_blank"><span class="title-norm">CU#22</span><span class="title-short">CU#22</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-22.devices_ne"></div><div class="rack-devices" id="9158921429013232936.devices_pp"></div></div></div><div class="floor-flats floor-even" id="9150039437013347877.floor_2.flats"><div class="flat" id="9150039437013347877.flat_79" style="order:79;"><div id="9150039437013347877.flat_79.number">79</div><div class="flat-service" id="9150039437013347877.flat_79.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_79.tv">тв</div></div><div class="flat" id="9150039437013347877.flat_80" style="order:80;"><div id="9150039437013347877.flat_80.number">80</div><div class="flat-service" id="9150039437013347877.flat_80.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_80.tv">тв</div></div><div class="flat" id="9150039437013347877.flat_81" style="order:81;"><div id="9150039437013347877.flat_81.number">81</div><div class="flat-service" id="9150039437013347877.flat_81.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_81.tv">тв</div></div></div></div></div><div class="floor floor_3" id="9150039437013347877.floor_3" style="order:130;"><div class="floor-number">3</div><div class="floor-objects" id="9150039437013347877.floor_3.objects"><div class="floor-racks" id="9150039437013347877.floor_3.racks"></div><div class="floor-racks floor-rk" id="9150039437013347877.floor_3.rk"><div class="rack type-CU" id="9158921429113232936" style="order:26;"><div class="rack-head"><div class="rack-title" id="9158921429113232936_title"><a href="https://nioss/ncobject.jsp?id=9158921429113232936" target="_blank"><span class="title-norm">CU#26</span><span class="title-short">CU#26</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-26.devices_ne"></div><div class="rack-devices" id="9158921429113232936.devices_pp"></div></div></div><div class="floor-flats floor-neven" id="9150039437013347877.floor_3.flats"><div class="flat" id="9150039437013347877.flat_82" style="order:82;"><div id="9150039437013347877.flat_82.number">82</div><div class="flat-service" id="9150039437013347877.flat_82.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_82.tv">тв</div></div><div class="flat" id="9150039437013347877.flat_83" style="order:83;"><div id="9150039437013347877.flat_83.number">83</div><div class="flat-service" id="9150039437013347877.flat_83.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_83.tv">тв</div></div><div class="flat" id="9150039437013347877.flat_84" style="order:84;"><div id="9150039437013347877.flat_84.number">84</div><div class="flat-service" id="9150039437013347877.flat_84.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_84.tv">тв</div></div></div></div></div><div class="floor floor_4" id="9150039437013347877.floor_4" style="order:140;"><div class="floor-number">4</div><div class="floor-objects" id="9150039437013347877.floor_4.objects"><div class="floor-racks" id="9150039437013347877.floor_4.racks"></div><div class="floor-racks floor-rk" id="9150039437013347877.floor_4.rk"><div class="rack type-CU" id="9158921422613232836" style="order:5;"><div class="rack-head"><div class="rack-title" id="9158921422613232836_title"><a href="https://nioss/ncobject.jsp?id=9158921422613232836" target="_blank"><span class="title-norm">CU#5</span><span class="title-short">CU#5</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-5.devices_ne"></div><div class="rack-devices" id="9158921422613232836.devices_pp"></div></div></div><div class="floor-flats floor-even" id="9150039437013347877.floor_4.flats"><div class="flat" id="9150039437013347877.flat_85" style="order:85;"><div id="9150039437013347877.flat_85.number">85</div><div class="flat-service" id="9150039437013347877.flat_85.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_85.tv">тв</div></div><div class="flat" id="9150039437013347877.flat_86" style="order:86;"><div id="9150039437013347877.flat_86.number">86</div><div class="flat-service" id="9150039437013347877.flat_86.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_86.tv">тв</div></div><div class="flat" id="9150039437013347877.flat_87" style="order:87;"><div id="9150039437013347877.flat_87.number">87</div><div class="flat-service" id="9150039437013347877.flat_87.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_87.tv">тв</div></div></div></div></div><div class="floor floor_5" id="9150039437013347877.floor_5" style="order:150;"><div class="floor-number">5</div><div class="floor-objects" id="9150039437013347877.floor_5.objects"><div class="floor-racks" id="9150039437013347877.floor_5.racks"></div><div class="floor-racks floor-rk" id="9150039437013347877.floor_5.rk"><div class="rack type-CU" id="9158921429413232836" style="order:1;"><div class="rack-head"><div class="rack-title" id="9158921429413232836_title"><a href="https://nioss/ncobject.jsp?id=9158921429413232836" target="_blank"><span class="title-norm">CU#1</span><span class="title-short">CU#1</span></a></div></div><div class="rack-devices" id="CU_54КР-00100-1.devices_ne"></div><div class="rack-devices" id="9158921429413232836.devices_pp"><div class="device type-PP" id="PP_54КР-00100_3"><div class="device-head"><div class="device-title" id="PP_54КР-00100_3_title"><a href="https://nioss/ncobject.jsp?id=9158921464713248014" target="_blank"><span class="title-norm">PP#3</span><span class="title-short">PP#3</span></a></div></div></div></div></div></div><div class="floor-flats floor-neven" id="9150039437013347877.floor_5.flats"><div class="flat on-service inet tv" id="9150039437013347877.flat_88" style="order:88;"><div id="9150039437013347877.flat_88.number"><a href="http://inetcore.mts.ru/#/6-091-0399424" target="_blank">88</a></div><div class="flat-service green" id="9150039437013347877.flat_88.spd">шпд</div><div class="flat-service red" id="9150039437013347877.flat_88.tv">тв</div></div><div class="flat on-service tv" id="9150039437013347877.flat_89" style="order:89;"><div id="9150039437013347877.flat_89.number"><a href="http://inetcore.mts.ru/#/6-090-0004007" target="_blank">89</a></div><div class="flat-service" id="9150039437013347877.flat_89.spd">шпд</div><div class="flat-service red" id="9150039437013347877.flat_89.tv">тв</div></div><div class="flat" id="9150039437013347877.flat_90" style="order:90;"><div id="9150039437013347877.flat_90.number">90</div><div class="flat-service" id="9150039437013347877.flat_90.spd">шпд</div><div class="flat-service" id="9150039437013347877.flat_90.tv">тв</div></div></div></div></div></div><div class="floors-under" id="9150039437013347877.under" style="grid-column:7/8;grid-row:3/4;"><div class="floor podval" id="9150039437013347877.podval" style="order:1000;"><div class="floor-number">П</div><div class="floor-objects" id="9150039437013347877.podval.objects"><div class="floor-racks" id="9150039437013347877.podval.racks"></div><div class="floor-racks floor-rk" id="9150039437013347877.podval.rk"></div><div class="floor-flats " id="9150039437013347877.podval.flats"><div class="flat-none">подвал</div></div></div></div><div class="floor floor_0" id="9150039437013347877.floor_0" style="order:100;"><div class="floor-number">0</div><div class="floor-objects" id="9150039437013347877.floor_0.objects"><div class="floor-racks" id="9150039437013347877.floor_0.racks"></div><div class="floor-racks floor-rk" id="9150039437013347877.floor_0.rk"></div><div class="floor-flats floor-even" id="9150039437013347877.floor_0.flats"><div class="flat-none"></div></div></div></div></div></div></div>
 				</div>
-				<div style="width:max-content;" class="container hide" name="абоненты">
+				<div style="width:max-content;" class="view hide" id="abons">
 					<table>
 						<thead>
 							<tr>
 								<th></th>
-								<th>кв</th>
 								<th>коммутатор</th>
 								<th>порт</th>
+								<th>кв</th>
 								<th>тест</th>
 								<th class="cell-desc">примечание</th>
 								<th><input type="button" id="btn_toggleAll" value="▓▓"></th>
-								<script>
+								<script type="text/javascript">
 									document.getElementById('btn_toggleAll').addEventListener('click',function(event){
 										if(event.target.value=='░░'){
 											while(document.querySelectorAll('.btn_checkbox[value="▓▓"]').length>0){
@@ -460,33 +515,40 @@
 							</tr>
 							<tr>
 								<th></th>
-								<th></th>
-								<th>
-									<select style="display:none;">
-										<option></option>
-										<option>10.221.154.188</option>
-										<option>10.221.154.115</option>
-										<option>10.221.155.13</option>
+								<th style="text-align:right;">
+									<select id="select_ethIp">
+										<option value=""></option>
+										<option value="10.221.154.188">154.188</option>
+										<option value="10.221.154.115">154.115</option>
+										<option value="10.221.155.13">155.13</option>
 									</select>
+									<script type="text/javascript">
+										document.getElementById('select_ethIp').addEventListener('change',function(event){
+											console.log(event.target.value);
+										});
+									</script>
 								</th>
-								<th><input type="button" value="n++▼"></th>
-								<th><input type="button" value="[►]"></th>
+								<th><input type="button" id="btn_fillPorts" value="n+▼"></th>
+								<script type="text/javascript">
+									document.getElementById('btn_fillPorts').addEventListener('click',function(event){
+										console.log(event.target.value);
+									});
+								</script>
+								<th style="text-align:right;">4</th>
+								<th><input type="button" id="btn_testAbons" value=" ▼ "></th>
+								<script type="text/javascript">
+									document.getElementById('btn_testAbons').addEventListener('click',function(event){
+										console.log(event.target.value);
+									});
+								</script>
 								<th></th>
 								<th><input type="button" id="btn_invertAll" value="▀▄"></th>
-								<script>
+								<script type="text/javascript">
 									document.getElementById('btn_invertAll').addEventListener('click',function(event){
 										for(let btn of document.querySelectorAll('.btn_checkbox')){
-											if(btn.value=='▓▓'){
-												btn.value='░░';
-											}else{
-												btn.value='▓▓';
-											};
+											if(btn.value=='▓▓'){btn.value='░░';}else{btn.value='▓▓';};
 										};
-										if(event.target.value=='▀▄'){
-											event.target.value='▄▀';
-										}else{
-											event.target.value='▀▄';
-										};
+										if(event.target.value=='▀▄'){event.target.value='▄▀';}else{event.target.value='▀▄';};
 									});
 								</script>
 								<th></th>
@@ -495,42 +557,42 @@
 						<tbody>
 							<tr>
 								<td></td>
-								<td class="cell-flat">270</td>
 								<td class="cell-input input-ip"><input type="text" value="10.221.180.168" placeholder="10.221.134.202"></td>
 								<td class="cell-input input-port"><input type="text" value="40" placeholder="19"></td>
-								<td><input type="button" style="color:green;" value=" ██"></td>
-								<td>работает</td>
+								<td>270</td>
+								<td><input type="button" style="color:green;" value="██"></td>
+								<td class="cell-desc">работает</td>
 								<td><input type="button" class="btn_checkbox" value="░░" onclick="if(this.value=='▓▓'){this.value='░░'}else{this.value='▓▓'}"></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td class="cell-flat">289</td>
 								<td class="cell-input input-ip"><input type="text" value="10.221.180.168" placeholder="10.221.134.202"></td>
 								<td class="cell-input input-port"><input type="text" value="43" placeholder="10"></td>
-								<td><input type="button" style="color:darkorange;" value=" ▓▓"></td>
-								<td>работает 50/50</td>
+								<td>289</td>
+								<td><input type="button" style="color:darkorange;" value="▓▓"></td>
+								<td class="cell-desc">возможно не работает</td>
 								<td><input type="button" class="btn_checkbox" value="░░" onclick="if(this.value=='▓▓'){this.value='░░'}else{this.value='▓▓'}"></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td class="cell-flat">144</td>
 								<td class="cell-input input-ip"><input type="text" value="10.221.180.168" placeholder="10.221.134.202"></td>
 								<td class="cell-input input-port"><input type="text" value="45" placeholder="13"></td>
-								<td><input type="button" style="color:gray;" id="btn_anim" value=" ░░"></td>
-								<script>document.getElementById('btn_anim').addEventListener('click',function(event){animIcon(event)});</script>
-								<td>проверка...</td>
+								<td>144</td>
+								<td><input type="button" style="color:gray;" id="btn_anim" value="░░"></td>
+								<script type="text/javascript">document.getElementById('btn_anim').addEventListener('click',function(event){animIcon(event)});</script>
+								<td class="cell-desc">проверка...</td>
 								<td><input type="button" class="btn_checkbox" value="░░" onclick="if(this.value=='▓▓'){this.value='░░'}else{this.value='▓▓'}"></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td class="cell-flat">1224</td>
 								<td class="cell-input input-ip"><input type="text" value="" placeholder="10.221.134.202"></td>
 								<td class="cell-input input-port"><input type="text" value="" placeholder="9"></td>
-								<td><input type="button" style="color:red;" value=" ██"></td>
-								<td>не работает</td>
+								<td>1224</td>
+								<td><input type="button" style="color:red;" value="██"></td>
+								<td class="cell-desc">не работает</td>
 								<td><input type="button" class="btn_checkbox" value="░░" onclick="if(this.value=='▓▓'){this.value='░░'}else{this.value='▓▓'}"></td>
 								<td></td>
 							</tr>
