@@ -111,11 +111,11 @@
 						th.cell-input>input[type="text"],td.cell-input>input[type="text"]{width:100px;padding:0px;}
 						th.cell-input>input[type="text"].edt,td.cell-input>input[type="text"].edt{/*background-color:#ffffe0;*/}
 						th.cell-input>input[type="text"]:hover:not(:disabled),td.cell-input>input[type="text"]:hover:not(:disabled){/*background-color:#eeeeff;*/}
-						th.input-ip,td.input-ip{text-align:right;}
-						th.input-ip>input[type="text"],td.input-ip>input[type="text"]{width:8em;text-align:left;}
-						th.input-port>input[type="text"],td.input-port>input[type="text"]{width:2em;text-align:right;}
+						th.input-ip,td.input-ip{/*text-align:right;*/}
+						th.input-ip>input[type="text"],td.input-ip>input[type="text"]{width:8em;/*text-align:left;*/}
+						th.input-port>input[type="text"],td.input-port>input[type="text"]{width:2em;/*text-align:left;*/}
 						
-						th>input[type="button"],td>input[type="button"]{padding:0px;font-family:monospace;}
+						th>input[type="button"],td>input[type="button"]{padding:0px;/*font-family:monospace;*/}
 						th>select,td>select{font-size:8pt;}
 						th>input[type="checkbox"],td>input[type="checkbox"]{margin:0px;}
 		</style>
@@ -528,7 +528,7 @@
 										});
 									</script>
 								</th>
-								<th><input type="button" id="btn_fillPorts" value="n+▼"></th>
+								<th><input type="button" id="btn_fillPorts" value="p++"></th>
 								<script type="text/javascript">
 									document.getElementById('btn_fillPorts').addEventListener('click',function(event){
 										console.log(event.target.value);
